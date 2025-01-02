@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["vite/client"],
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "paths": {
+      "@muc/components": ["src/components/components.ts"],
+      "@muc/constants": ["src/constants/constants.ts"],
+      "@muc/modules": ["src/modules/modules.ts"],
+      "@muc/core": ["src/core/core.ts"],
+      "@muc/screens": ["src/screens/screens.ts"],
+      "@muc/styles": ["src/styles/theme.ts"],
+      "@muc/layout": ["src/layout/layout.ts"],
+      "@muc/hooks": ["src/hooks/hooks.ts"],
+      "@muc/types": ["src/types/types.ts"],
+      "@muc/validations": ["src/validations/validations.ts"],
+      "@muc/providers": ["src/providers/providers.ts"],
+      "@muc/context": ["src/context/context.ts"],
+      "@muc/firebase": ["src/firebase/firebase.ts"],
+      "@muc/utils": ["src/utils/utils.ts"]
+    },
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
