@@ -9,9 +9,10 @@ const Footer = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        borderTop:`1px solid ${COLORS.gray.darkGray}`
       }}
     >
-      <Typography variant="body1">2025 - Admin Dashboard</Typography>
+      <Typography variant="body1" my={1}>2025 - Admin Dashboard</Typography>
       <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
         <Link to={""} style={linkStyle}>
           About
