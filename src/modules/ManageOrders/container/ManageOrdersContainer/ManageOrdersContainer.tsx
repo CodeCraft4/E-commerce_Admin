@@ -1,9 +1,10 @@
+import { AppLayout } from "@muc/layout"
 
 const ManageOrdersContainer = () => {
   return (
-    <div>
-      
-    </div>
+    <AppLayout  title="Orders List" path="Home">
+      <h1>Hell........ orders</h1>
+    </AppLayout>
   )
 }
 

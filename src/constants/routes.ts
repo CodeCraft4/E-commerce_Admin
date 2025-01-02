@@ -4,9 +4,9 @@ export const ROUTES = {
   },
 
   ADMIN: {
-    DASHBOARD: "/manage-dashboard",
-    PRODUCTS: "/manage-products",
-    ORDERS: "/manage-orders",
-    ANALYTICS: "/manage-analytics",
+    DASHBOARD: "/Dashboard",
+    PRODUCTS: "/Products",
+    ORDERS: "/Orders",
+    ANALYTICS: "/Analytics",
   },
 };

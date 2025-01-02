@@ -1,13 +1,12 @@
-import { ManageProductsContainer } from '@muc/modules'
-import React from 'react'
+import { ManageProductsContainer } from "@muc/modules";
+import React from "react";
 
 const ManageProducts = () => {
   return (
     <React.Fragment>
-      <ManageProductsContainer/>
-      <h1>................Products</h1>
+      <ManageProductsContainer />
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default ManageProducts
+export default ManageProducts;

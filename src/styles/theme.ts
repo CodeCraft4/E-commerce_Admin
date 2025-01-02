@@ -157,6 +157,7 @@ theme = {
         },
       },
     },
+
     MuiTable: {
       styleOverrides: {
         root: {
@@ -179,6 +180,24 @@ theme = {
           "&.Mui-disabled": {
             color: COLORS.gray.lightGray,
           },
+        },
+      },
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: "20px",
+          backgroundColor: COLORS.white.main,
+          boxShadow: `2px 1px 3px ${COLORS.gray.lightGray}`,
+        },
+      },
+    },
+
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          borderRadius: 0,
         },
       },
     },
