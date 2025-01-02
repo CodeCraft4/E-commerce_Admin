@@ -1,10 +1,11 @@
+import { AuthLayout, SignInForm } from "../../components/components";
 
 const SignInContainer = () => {
   return (
-    <div>
-      <h1>sing in.........</h1>
-    </div>
-  )
-}
+    <AuthLayout>
+      <SignInForm />
+    </AuthLayout>
+  );
+};
 
-export default SignInContainer
+export default SignInContainer;

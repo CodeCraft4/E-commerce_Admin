@@ -1,5 +1,5 @@
 import { ROUTES } from "@muc/constants";
-import { SignInContainer, SignUpContainer } from "@muc/modules";
+import { SignInContainer } from "@muc/modules";
 import {
   ManageAnalytics,
   ManageAuth,
@@ -14,7 +14,7 @@ const Routes = () => {
     <ReactRoutes>
       <Route element={<ManageAuth />}>
         <Route path={"/"} element={<SignInContainer />} />
-        <Route path={ROUTES.AUTH.SIGN_UP} element={<SignUpContainer />} />
+        <Route path={ROUTES.AUTH.SIGN_IN} element={<SignInContainer />} />
       </Route>
       <Route path={ROUTES.ADMIN.DASHBOARD} element={<ManageDashboard />} />
       <Route path={ROUTES.ADMIN.PRODUCTS} element={<ManageProducts />} />
