@@ -98,7 +98,6 @@ export const Sidebar = (props: SidebarProps) => {
         sx={{
           width: { md: 260, sm: 200, xs: 180 },
           height: "100%",
-          backgroundImage: `url('/assets/icons/Navigation-image.svg')`,
           backgroundSize: "cover",
           display: "flex",
           flexDirection: "column",
