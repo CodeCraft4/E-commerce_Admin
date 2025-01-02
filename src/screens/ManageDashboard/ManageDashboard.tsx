@@ -5,7 +5,6 @@ const ManageDashboard = () => {
   return (
     <React.Fragment>
       <ManageDashboardContainer/>
-      <h1>.............Dashboard</h1>
     </React.Fragment>
   )
 }
