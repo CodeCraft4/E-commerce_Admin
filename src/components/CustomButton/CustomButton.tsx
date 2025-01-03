@@ -64,13 +64,13 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: title ? "space-between" : "center",
+              justifyContent: icon ? "space-between" : "center",
               alignItems: "center",
               width: title ? "100%" : "auto",
               gap: title ? "8px" : "0",
             }}
           >
-            {title}
+            {title?.toUpperCase()}
             {icon}
           </Box>
         )}

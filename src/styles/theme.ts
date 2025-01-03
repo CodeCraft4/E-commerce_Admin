@@ -66,7 +66,7 @@ theme = {
     MuiButton: {
       styleOverrides: {
         root: {
-          fontSize: "14px",
+          fontSize: "12px",
           fontWeight: 600,
           borderRadius: 10,
           padding: "16px ",
@@ -117,12 +117,9 @@ theme = {
       styleOverrides: {
         root: {
           borderRadius: 10,
-          height: 48,
           fontSize: 16,
-          width: "450px",
           background: "transparent",
           [theme.breakpoints.down("sm")]: {
-            height: 48,
             width: "90%",
           },
           "& fieldset": {
@@ -198,6 +195,15 @@ theme = {
       styleOverrides: {
         paper: {
           borderRadius: 0,
+          boxShadow: "none",
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: 4,
+          boxShadow: "none",
         },
       },
     },

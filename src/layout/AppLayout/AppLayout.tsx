@@ -53,7 +53,7 @@ const AppLayout = (props: Props) => {
       <Box
         sx={{
           width: "100%",
-          overflow: "hidden",
+          overflowY: "scroll",
           bgcolor: COLORS.gray.main,
           height: "100vh",
         }}
@@ -62,7 +62,7 @@ const AppLayout = (props: Props) => {
         <Box m={{ md: "20px", sm: "20px", xs: "10px" }} height={"100vh"}>
           <TitleHeader title={title} path={path} isProduct={isProduct} />
           {children}
-          <Box sx={{ flex: 1, paddingTop: "14em" }}>
+          <Box sx={{ flex: 1, paddingTop: "5em" }}>
             <Footer />
           </Box>
         </Box>
