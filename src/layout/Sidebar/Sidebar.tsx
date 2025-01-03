@@ -73,14 +73,7 @@ export const Sidebar = (props: SidebarProps) => {
             width={20}
             height={20}
           />
-          <Typography
-            variant="h5"
-            sx={{
-              color: "inherit",
-            }}
-          >
-            {title}
-          </Typography>
+          <Typography variant="h5">{title}</Typography>
         </Button>
       </ListItem>
     );
@@ -94,7 +87,7 @@ export const Sidebar = (props: SidebarProps) => {
     >
       <List
         className="MuiList-sideBar-menu"
-        component={'ul'}
+        component={"ul"}
         sx={{
           width: { md: 260, sm: 200, xs: 180 },
           height: "100%",
@@ -118,25 +111,25 @@ export const Sidebar = (props: SidebarProps) => {
           path: ROUTES.ADMIN.DASHBOARD,
           icon: "/assets/icons/dashboard-icon.svg",
           active: [ROUTES.ADMIN.DASHBOARD],
-          title: "Dashboard",
+          title: "DASHBOARD",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.PRODUCTS,
           icon: "/assets/icons/products-icon.svg",
-          active: [ROUTES.ADMIN.PRODUCTS],
-          title: "All Products",
+          active: [ROUTES.ADMIN.PRODUCTS, ROUTES.ADMIN.ADD_NEW_PRODUCT],
+          title: "ALL PRODUCTS",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.ORDERS,
           icon: "/assets/icons/orderlist-icon.svg",
           active: [ROUTES.ADMIN.ORDERS],
-          title: "Orders List",
+          title: "ORDER LIST",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.ANALYTICS,
           icon: "/assets/icons/analytics-icon.svg",
           active: [ROUTES.ADMIN.ANALYTICS],
-          title: "Analytics",
+          title: "ANALYTICS",
         })}
 
         <div style={{ flex: 1, paddingTop: "4em" }} />

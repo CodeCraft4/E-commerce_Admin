@@ -1,8 +1,8 @@
 import { CustomButton } from "@muc/components";
-import { COLORS } from "@muc/constants";
+import { COLORS, ROUTES } from "@muc/constants";
 import { Add, ArrowForwardIos, CalendarMonth } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type HeaderTypes = {
   title: string;
@@ -13,6 +13,7 @@ type HeaderTypes = {
 const TitleHeader = (props: HeaderTypes) => {
   const { title, path, isProduct } = props || {};
   const location = useLocation();
+  const navigate = useNavigate();
   const formattedPathname = location.pathname.slice(1);
   return (
     <Box
@@ -44,6 +45,9 @@ const TitleHeader = (props: HeaderTypes) => {
           variant="contained"
           width="200px"
           icon={<Add />}
+          onClick={
+            isProduct ? () => navigate(ROUTES.ADMIN.ADD_NEW_PRODUCT) : () => {}
+          }
         />
       ) : (
         <Box sx={{ display: "flex", gap: "4px", alignItems: "center" }}>
