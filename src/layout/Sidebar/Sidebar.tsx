@@ -6,7 +6,6 @@ import { theme } from "@muc/styles";
 import { useLocation, useNavigate } from "react-router";
 import { Box, Button, Typography } from "@mui/material";
 import { COLORS, ROUTES } from "@muc/constants";
-import { LogoutOutlined } from "@mui/icons-material";
 import { CategoriesMenu } from "@muc/components";
 
 type SidebarProps = {
