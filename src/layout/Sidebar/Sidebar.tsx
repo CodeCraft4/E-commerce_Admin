@@ -6,7 +6,7 @@ import { theme } from "@muc/styles";
 import { useLocation, useNavigate } from "react-router";
 import { Box, Button, Typography } from "@mui/material";
 import { COLORS, ROUTES } from "@muc/constants";
-import { LogoutOutlined } from "@mui/icons-material";
+import { CategoriesMenu } from "@muc/components";
 
 type SidebarProps = {
   open: boolean;
@@ -132,22 +132,8 @@ export const Sidebar = (props: SidebarProps) => {
           title: "ANALYTICS",
         })}
 
+        <CategoriesMenu />
         <div style={{ flex: 1, paddingTop: "4em" }} />
-        <Typography
-          variant="h5"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-            cursor: "pointer",
-            "&:hover": {
-              color: COLORS.primary.main,
-            },
-          }}
-        >
-          <LogoutOutlined />
-          LogOut
-        </Typography>
       </List>
     </Drawer>
   );
