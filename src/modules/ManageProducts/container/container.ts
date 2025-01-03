@@ -1,1 +1,2 @@
 export { default as ManageProductsContainer } from "./ManageProductsContainer/ManageProductsContainer";
+export {default as AddNewProductsContainer} from "./AddNewProductsContainer/AddNewProductsContainer";
