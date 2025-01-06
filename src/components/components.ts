@@ -3,3 +3,5 @@ export { default as CustomTextField } from "./CustomTextField/CustomTextField";
 export { default as DropdownModal } from "./DropdownModal/DropdownModal";
 export { default as TitleHeader } from "./TitleHeader/TitleHeader";
 export { default as CategoriesMenu } from "./Categories/Categories";
+export { default as OnSuccessModal } from "./OnSuccessModal/OnSuccessModal";
+export { default as ManageAccountModal } from "./ManageAccountModal/ManageAccountModal";
