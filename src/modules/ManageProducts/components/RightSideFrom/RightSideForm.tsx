@@ -98,7 +98,7 @@ const RightSideForm: React.FC = () => {
             src={previewImage}
             alt="Preview"
             sx={{
-              width: "100%",
+              width: { md: "100%", sm: "100%", xs: "100%" },
               height: "100%",
               borderRadius: "10px",
               objectFit: "cover",
@@ -141,7 +141,7 @@ const RightSideForm: React.FC = () => {
               variant="body1"
               color={COLORS.primary.main}
               width={"250px"}
-              fontSize={'15px'}
+              fontSize={"15px"}
             >
               Drop your image here, or browse Jpeg , png , svg are allowed
             </Typography>
@@ -158,12 +158,16 @@ const RightSideForm: React.FC = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  bgcolor: COLORS.gray.main,
+                  bgcolor: {
+                    md: COLORS.gray.main,
+                    sm: COLORS.gray.main,
+                    xs: COLORS.white.main,
+                  },
                   borderRadius: "10px",
                   p: 1,
                   justifyContent: "center",
                   m: "auto",
-                  width: "440px",
+                  width: { md: "440px", sm: 440, xs: 250 },
                 }}
               >
                 <Box

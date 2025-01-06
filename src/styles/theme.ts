@@ -120,7 +120,7 @@ theme = {
           fontSize: 16,
           background: "transparent",
           [theme.breakpoints.down("sm")]: {
-            width: "90%",
+            width: "100%",
           },
           "& fieldset": {
             border: `1.4px solid ${COLORS.dark.main}`,
@@ -202,7 +202,7 @@ theme = {
     MuiDialog: {
       styleOverrides: {
         paper: {
-          borderRadius: 4,
+          borderRadius: 8,
           boxShadow: "none",
         },
       },
