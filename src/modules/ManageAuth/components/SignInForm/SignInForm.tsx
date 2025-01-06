@@ -38,11 +38,13 @@ const SignInForm = () => {
             placeHolder="Email or Phone Number"
             type="email"
             name="email"
+            width='406px'
           />
           <CustomTextField
             placeHolder="Password"
             type="password"
             name="password"
+            width='406px'
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
