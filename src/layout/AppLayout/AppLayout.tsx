@@ -6,7 +6,12 @@ import { Sidebar } from "../Sidebar/Sidebar";
 import { COLORS } from "@muc/constants";
 import { Footer, Navbar } from "@muc/layout";
 import { useModal } from "@muc/hooks";
-import { DropdownModal, TitleHeader } from "@muc/components";
+import {
+  DropdownModal,
+  ManageAccountModal,
+  OnSuccessModal,
+  TitleHeader,
+} from "@muc/components";
 
 type Props = {
   children: React.ReactNode;
@@ -26,6 +31,16 @@ const AppLayout = (props: Props) => {
     Open: openDropdownModal,
     onClose: closeDropdownModal,
     onOpen: onOpenDropdownModal,
+  } = useModal();
+  const {
+    Open: openLogoutModal,
+    onClose: closeLogoutModal,
+    onOpen: onOpenLogoutModal,
+  } = useModal();
+  const {
+    Open: openAccountModal,
+    onClose: closeAccountModal,
+    onOpen: onOpenAccountModal,
   } = useModal();
 
   return (
@@ -69,7 +84,21 @@ const AppLayout = (props: Props) => {
       </Box>
 
       {openDropdownModal && (
-        <DropdownModal open={openDropdownModal} onClose={closeDropdownModal} />
+        <DropdownModal
+          open={openDropdownModal}
+          onClose={closeDropdownModal}
+          openLogoutModal={onOpenLogoutModal}
+          openAccountModal={onOpenAccountModal}
+        />
+      )}
+      {openLogoutModal && (
+        <OnSuccessModal open={openLogoutModal} onClose={closeLogoutModal} />
+      )}
+      {openAccountModal && (
+        <ManageAccountModal
+          open={openAccountModal}
+          onClose={closeAccountModal}
+        />
       )}
     </Box>
   );

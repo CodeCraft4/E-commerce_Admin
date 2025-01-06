@@ -50,6 +50,7 @@ export const Sidebar = (props: SidebarProps) => {
             mb: 1,
             width: "70%",
             gap: "5px",
+            justifyContent:'space-evenly',
             ".img": {
               filter: isActive
                 ? "invert(100%) brightness(200%) contrast(200%)"
@@ -117,13 +118,19 @@ export const Sidebar = (props: SidebarProps) => {
           path: ROUTES.ADMIN.PRODUCTS,
           icon: "/assets/icons/products-icon.svg",
           active: [ROUTES.ADMIN.PRODUCTS, ROUTES.ADMIN.ADD_NEW_PRODUCT],
-          title: "ALL PRODUCTS",
+          title: "PRODUCTS",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.ORDERS,
           icon: "/assets/icons/orderlist-icon.svg",
           active: [ROUTES.ADMIN.ORDERS],
           title: "ORDER LIST",
+        })}
+        {generateListItem({
+          path: ROUTES.ADMIN.ACCOUNTS,
+          icon: "/assets/icons/products-icon.svg",
+          active: [ROUTES.ADMIN.ACCOUNTS],
+          title: "ACCOUNTS",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.ANALYTICS,

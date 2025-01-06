@@ -9,11 +9,28 @@ import {
 
 type ModalProps = {
   open: boolean;
-  onClose: () => void | boolean;
+  onClose: () => void;
+  openLogoutModal?: () => void;
+  openAccountModal?: () => void;
 };
 
 const DropdownModal = (props: ModalProps) => {
-  const { open, onClose } = props || {};
+  const { open, onClose, openLogoutModal, openAccountModal } = props || {};
+
+  const handleLogoutClick = () => {
+    if (openLogoutModal) {
+      openLogoutModal();
+    }
+    onClose();
+  };
+
+  const handleAccountClick = () => {
+    if (openAccountModal) {
+      openAccountModal();
+    }
+    onClose();
+  };
+
   return (
     <Dialog
       open={open}
@@ -48,8 +65,10 @@ const DropdownModal = (props: ModalProps) => {
               fontSize: "14px",
               cursor: "pointer",
             }}
+            onClick={handleAccountClick}
           >
-            CHANGE PASSWORD <ArrowForwardIos fontSize="small" />
+            MANAGE MY ACCOUNT
+            <ArrowForwardIos fontSize="small" />
           </Typography>
           <Typography
             variant="h6"
@@ -60,6 +79,7 @@ const DropdownModal = (props: ModalProps) => {
               fontSize: "14px",
               cursor: "pointer",
             }}
+            onClick={handleLogoutClick}
           >
             LOG OUT <LogoutOutlined fontSize="small" />
           </Typography>
