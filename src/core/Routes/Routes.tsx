@@ -5,6 +5,7 @@ import {
   SignInContainer,
 } from "@muc/modules";
 import {
+  ManageAccount,
   ManageAnalytics,
   ManageAuth,
   ManageDashboard,
@@ -33,6 +34,7 @@ const Routes = () => {
       </Route>
       <Route path={ROUTES.ADMIN.ORDERS} element={<ManageOrders />} />
       <Route path={ROUTES.ADMIN.ANALYTICS} element={<ManageAnalytics />} />
+      <Route path={ROUTES.ADMIN.ACCOUNTS} element={<ManageAccount />} />
     </ReactRoutes>
   );
 };
