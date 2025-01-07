@@ -1,6 +1,7 @@
+import { MenuButton } from "@muc/components";
 import { COLORS } from "@muc/constants";
-import { MoreVertOutlined } from "@mui/icons-material";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Delete, Edit, MoreVertOutlined } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 
 type ProfileCardProps = {
   profile: string;
@@ -16,25 +17,25 @@ const ProfileCard = (props: ProfileCardProps) => {
       sx={{
         bgcolor: COLORS.white.main,
         p: 2,
-        width: {md:200},
+        width: { md: 280 },
         borderRadius: 2,
         justifyContent: "center",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        my: { md: 2 },
+        my: { md: 1 },
         position: "relative",
       }}
     >
-      <IconButton
-        sx={{
-          position: "absolute",
-          top: 2,
-          right: 2,
-        }}
-      >
-        <MoreVertOutlined />
-      </IconButton>
+      <Box sx={{ position: "absolute", top: 2, right: 2 }}>
+        <MenuButton
+          DeleteIcon={<Delete />}
+          MoreIcon={<MoreVertOutlined />}
+          DeleteTitle="Delete"
+          title="Edit"
+          Icon={<Edit />}
+        />
+      </Box>
       <Box
         component={"img"}
         src={profile}

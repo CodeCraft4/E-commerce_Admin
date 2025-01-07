@@ -15,18 +15,9 @@ const OrdersAnalytics = (props: OrderType) => {
     <>
       <Box sx={orderCardStyle}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography
-            variant="h6"
-            fontWeight={600}
-          >
+          <Typography variant="h6" fontWeight={600}>
             {title}
           </Typography>
-          <Box
-            component="img"
-            src={icon}
-            sx={{ width: "3px", height: "16px" }}
-            alt="ShowMore"
-          />
         </Box>
         <Box
           sx={{
@@ -44,7 +35,7 @@ const OrdersAnalytics = (props: OrderType) => {
                 sx={{ width: "20px", height: "20px" }}
               />
             </Box>
-            <Typography variant="h6" fontWeight={600} >
+            <Typography variant="h6" fontWeight={600}>
               ${price}
             </Typography>
           </Box>
@@ -56,7 +47,7 @@ const OrdersAnalytics = (props: OrderType) => {
               height={12}
               width={11}
             />
-            <Typography variant="h6" fontWeight={600} >
+            <Typography variant="h6" fontWeight={600}>
               {percentage}%
             </Typography>
           </Box>

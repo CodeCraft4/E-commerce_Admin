@@ -5,25 +5,35 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Box, Divider, Typography, Checkbox, Avatar } from "@mui/material";
-import { Delete, MoreVert } from "@mui/icons-material";
-import { COLORS } from "@muc/constants";
+import {
+  Box,
+  Divider,
+  Typography,
+  Checkbox,
+  Avatar,
+  IconButton,
+} from "@mui/material";
+import { ArrowForwardIos, Delete, MoreVert } from "@mui/icons-material";
+import { COLORS, ROUTES } from "@muc/constants";
 import { MenuButton } from "@muc/components";
+import { useNavigate } from "react-router-dom";
+import { TableData } from "@muc/types";
 
 type tableDataType = {
-  data: any[];
+  data: TableData[];
   title?: string;
 };
 
 const DataTable = (props: tableDataType) => {
   const { data, title } = props || {};
+  const navigate = useNavigate();
 
   const [selected, setSelected] = useState<number[]>([]);
   const [selectAll, setSelectAll] = useState(false);
 
   const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      setSelected(data?.map((row) => row?.orderId));
+      setSelected(data?.map((row: TableData) => row?.orderId));
     } else {
       setSelected([]);
     }
@@ -81,7 +91,7 @@ const DataTable = (props: tableDataType) => {
             <TableCell>Product</TableCell>
             <TableCell>OrderId</TableCell>
             <TableCell>Date</TableCell>
-            <TableCell>Customer Name</TableCell>
+            <TableCell>Customer&nbsp;Name</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Amount</TableCell>
           </TableRow>
@@ -89,10 +99,9 @@ const DataTable = (props: tableDataType) => {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.d}
+              key={row.id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                cursor: "pointer",
               }}
             >
               <TableCell padding="checkbox">
@@ -108,7 +117,7 @@ const DataTable = (props: tableDataType) => {
                 {row.productName}
               </TableCell>
               <TableCell>#{row.orderId}</TableCell>
-              <TableCell >{row.date}</TableCell>
+              <TableCell>{row.date}</TableCell>
               <TableCell
                 sx={{
                   display: "flex",
@@ -121,10 +130,10 @@ const DataTable = (props: tableDataType) => {
                   variant="circular"
                   sx={{ width: "24px", height: "24px", fontSize: "12px" }}
                 >
-                  {row.image ? (
+                  {row?.poster ? (
                     <Box
                       component={"img"}
-                      src={row.image}
+                      src={row?.poster}
                       sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : (
@@ -133,7 +142,7 @@ const DataTable = (props: tableDataType) => {
                 </Avatar>
                 <Typography variant="body1">{row.customerName}</Typography>
               </TableCell>
-              <TableCell >
+              <TableCell>
                 <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
                   <Box
                     component={"span"}
@@ -150,7 +159,18 @@ const DataTable = (props: tableDataType) => {
                   {row.status}
                 </Box>
               </TableCell>
-              <TableCell >${row.amount}</TableCell>
+              <TableCell>
+                <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                  ${row.amount}
+                  <IconButton
+                    onClick={() =>
+                      navigate(ROUTES.ADMIN.ORDERS_DETAILS, { state: { row } })
+                    }
+                  >
+                    <ArrowForwardIos fontSize="small" />
+                  </IconButton>
+                </Box>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

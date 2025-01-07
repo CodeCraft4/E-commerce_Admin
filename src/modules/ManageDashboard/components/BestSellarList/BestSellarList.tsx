@@ -1,24 +1,21 @@
 import { CustomButton } from "@muc/components";
-import { COLORS, Sallers_Data } from "@muc/constants";
+import { COLORS, SELLER_DATA } from "@muc/constants";
 import { MoreVert } from "@mui/icons-material";
 import { Box, Divider, Typography } from "@mui/material";
 
 const BestSellersList = () => {
-
-
   return (
-    <>
+    <Box my={{ md: 0, sm: 0, xs: 2 }}>
       <Box
         sx={{
           bgcolor: COLORS.white.main,
-          width: "360px",
+          width: { md: "360px", sm: "530px", xs: "100%" },
           height: "390px",
           padding: "28px 16px 24px",
           borderRadius: "16px",
           display: "flex",
           flexDirection: "column",
           gap: "16px",
-          overflow: "hidden",
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -32,7 +29,6 @@ const BestSellersList = () => {
         </Box>
         <Divider />
 
-
         <Box
           sx={{
             display: "flex",
@@ -40,9 +36,19 @@ const BestSellersList = () => {
             overflowY: "auto",
             paddingRight: "8px",
             gap: "8px",
+            "&::-webkit-scrollbar": {
+              width: "5px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: COLORS.primary.main,
+              borderRadius: "50px",
+            },
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "transparent",
+            },
           }}
         >
-          {Sallers_Data.map((item) => (
+          {SELLER_DATA.map((item) => (
             <Box
               sx={{
                 display: "flex",
@@ -56,6 +62,7 @@ const BestSellersList = () => {
                     bgcolor: COLORS.gray.main,
                     width: "64px",
                     height: "64px",
+                    borderRadius: 1,
                   }}
                 ></Box>
                 <Box>
@@ -91,12 +98,10 @@ const BestSellersList = () => {
           ))}
         </Box>
 
-
         <CustomButton title="Report" variant="contained" width="85px" />
       </Box>
-    </>
+    </Box>
   );
 };
-
 
 export default BestSellersList;

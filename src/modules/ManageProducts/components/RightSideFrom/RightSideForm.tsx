@@ -12,12 +12,18 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useFormContext } from "react-hook-form";
 import { dragAndDrop, dragAndDropGallary } from "@muc/utils";
 
+type ProductType = {
+  productDetails: any;
+};
+
 type ImageFile = {
   preview: string;
   name: string;
 };
 
-const RightSideForm: React.FC = () => {
+const RightSideForm = (props: ProductType) => {
+  const { productDetails } = props || {};
+
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [images, setImages] = useState<ImageFile[]>([]);
   const [isUploadingPreview, setIsUploadingPreview] = useState<boolean>(false);
@@ -95,7 +101,7 @@ const RightSideForm: React.FC = () => {
         ) : previewImage ? (
           <Box
             component="img"
-            src={previewImage}
+            src={productDetails?.img ? productDetails?.img : previewImage}
             alt="Preview"
             sx={{
               width: { md: "100%", sm: "100%", xs: "100%" },

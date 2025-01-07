@@ -240,12 +240,12 @@ theme = {
             color: "black",
             "&:hover": {
               color: COLORS.white.main,
-              backgroundColor: COLORS.primary.main,
+              backgroundColor: COLORS.dark.main,
             },
           },
           "& .Mui-selected": {
             color: COLORS.white.main,
-            backgroundColor: COLORS.primary.main,
+            backgroundColor: COLORS.dark.main,
           },
         },
       },

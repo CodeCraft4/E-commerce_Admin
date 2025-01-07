@@ -1,17 +1,18 @@
 import { AppLayout } from "@muc/layout";
-import { item_Data } from "@muc/constants";
+import { PRODUCTS_DATA } from "@muc/constants";
 import { Box, Pagination } from "@mui/material";
 import { useState } from "react";
 import { ProductCard } from "../../components/components";
 
 const ManageProductsContainer = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 15;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = item_Data.slice(startIndex, endIndex);
-  const handlePageChange = (event, page: any) => {
+  const currentItems = PRODUCTS_DATA.slice(startIndex, endIndex);
+  const handlePageChange = (event:React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
+    console.log(event);
   };
 
   return (
@@ -25,21 +26,12 @@ const ManageProductsContainer = () => {
             justifyContent: "center",
           }}
         >
-          {currentItems.map((item, i) => (
-            <ProductCard
-              key={i}
-              img={item.img}
-              title={item.title}
-              description={item.description}
-              sales={item.sales}
-              remainingProduct={item.remainingProduct}
-              category={item.category}
-              price={item.price}
-            />
+          {currentItems.map((item) => (
+            <ProductCard item={item} />
           ))}
         </Box>
         <Pagination
-          count={Math.ceil(item_Data.length / itemsPerPage)}
+          count={Math.ceil(PRODUCTS_DATA.length / itemsPerPage)}
           page={currentPage}
           onChange={handlePageChange}
           variant="outlined"

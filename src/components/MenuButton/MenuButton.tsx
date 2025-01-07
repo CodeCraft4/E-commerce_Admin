@@ -1,5 +1,5 @@
 import { COLORS } from "@muc/constants";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { Button, IconButton, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 
 type MenuDataType = {
@@ -8,9 +8,11 @@ type MenuDataType = {
   MoreIcon: React.ReactNode;
   DeleteTitle?: string;
   DeleteIcon?: React.ReactNode;
+  onEdit?: () => void;
 };
-const MenuButton = (props: MenuDataType) => {
-  const { Icon, title, MoreIcon, DeleteIcon, DeleteTitle } = props || {};
+const MenuButtons = (props: MenuDataType) => {
+  const { Icon, title, MoreIcon, DeleteIcon, DeleteTitle, onEdit } =
+    props || {};
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -23,19 +25,7 @@ const MenuButton = (props: MenuDataType) => {
   };
   return (
     <>
-      <Button
-        onClick={handleClick}
-        sx={{
-          bgcolor: COLORS.gray.lightGray,
-          color: COLORS.dark.darBlack,
-          borderRadius: "4px",
-          padding: "8px 12px",
-          minWidth: "auto",
-          height: "30px",
-        }}
-      >
-        {MoreIcon}
-      </Button>
+      <IconButton onClick={handleClick}>{MoreIcon}</IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -43,17 +33,24 @@ const MenuButton = (props: MenuDataType) => {
         onClose={handleClose}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: "#E7E7E3",
             borderRadius: "10px",
             mt: 1,
           },
+        }}
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
         }}
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
       >
         {title && Icon && (
-          <MenuItem onClick={handleClose} sx={{ padding: 0 }}>
+          <MenuItem onClick={onEdit} sx={{ padding: 0 }}>
             <Button
               startIcon={Icon}
               sx={{ width: "100%", color: COLORS.dark.darBlack }}
@@ -75,4 +72,4 @@ const MenuButton = (props: MenuDataType) => {
   );
 };
 
-export default MenuButton;
+export default MenuButtons;

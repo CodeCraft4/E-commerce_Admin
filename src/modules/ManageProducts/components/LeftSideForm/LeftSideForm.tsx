@@ -1,8 +1,12 @@
-import {CustomTextField } from "@muc/components";
+import { CustomTextField } from "@muc/components";
 import { Box } from "@mui/material";
 
-const LeftSideForm = () => {
+type ProductType = {
+  productDetails: any;
+};
 
+const LeftSideForm = (props: ProductType) => {
+  const { productDetails } = props || {};
   return (
     <Box>
       <CustomTextField
@@ -11,6 +15,7 @@ const LeftSideForm = () => {
         placeHolder="Type name here"
         type="text"
         width="556px"
+        defaultValue={`${productDetails.title ? productDetails.title : ""}`}
       />
       <CustomTextField
         label="Description"
@@ -19,6 +24,9 @@ const LeftSideForm = () => {
         type="text"
         width="556px"
         multiline={true}
+        defaultValue={`${
+          productDetails.description ? productDetails.description : ""
+        }`}
       />
       <CustomTextField
         label="Category"
@@ -26,6 +34,9 @@ const LeftSideForm = () => {
         placeHolder="Type Category here"
         type="text"
         width="556px"
+        defaultValue={`${
+          productDetails.category ? productDetails.category : ""
+        }`}
       />
       <CustomTextField
         label="Brand Name"
@@ -33,6 +44,7 @@ const LeftSideForm = () => {
         placeHolder="Type Brand here"
         type="text"
         width="556px"
+        defaultValue={`${productDetails.title ? productDetails.title : ""}`}
       />
       <Box display={"flex"} gap={2} my={1}>
         <CustomTextField
@@ -41,6 +53,7 @@ const LeftSideForm = () => {
           placeHolder="Fox-39876"
           type="number"
           width="266px"
+          defaultValue={"2323"}
         />
         <CustomTextField
           label="Stock Quantity"
@@ -48,6 +61,7 @@ const LeftSideForm = () => {
           placeHolder="9876"
           type="number"
           width="266px"
+          defaultValue={"23"}
         />
       </Box>
       <Box display={"flex"} gap={2} my={1}>
@@ -57,6 +71,7 @@ const LeftSideForm = () => {
           placeHolder="$76"
           type="number"
           width="266px"
+          defaultValue={`${productDetails.price ? productDetails.price : ""}`}
         />
         <CustomTextField
           label="Sale Price"
@@ -64,11 +79,11 @@ const LeftSideForm = () => {
           placeHolder="$126"
           type="number"
           width="266px"
+          defaultValue={`${productDetails.sales ? productDetails.sales : ""}`}
         />
       </Box>
     </Box>
   );
 };
-
 
 export default LeftSideForm;

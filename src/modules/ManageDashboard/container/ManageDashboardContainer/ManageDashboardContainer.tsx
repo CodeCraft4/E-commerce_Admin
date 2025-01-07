@@ -18,7 +18,8 @@ const ManageDashboardContainer = () => {
           alignItems: "center",
           my: { md: 2 },
           flexWrap: "wrap",
-          // justifyContent:'space-between'
+          width: "100%",
+          justifyContent: "space-between",
         }}
       >
         {ORDER_RECORD.map((item) => (
@@ -31,12 +32,18 @@ const ManageDashboardContainer = () => {
           />
         ))}
       </Box>
-      <Box sx={{ display: "flex", gap: "10px" }}>
+      <Box
+        sx={{
+          display: { md: "flex", sm: "block", xs: "block" },
+          gap: "16px",
+          width: "100%",
+        }}
+      >
         <SellerGraph />
         <BestSellersList />
       </Box>
       <Box component={Paper} p={{ md: 1 }} my={2}>
-        <DataTable data={ORDERS_TABLE_DATA || []} title="Recent Orders"/>
+        <DataTable data={ORDERS_TABLE_DATA || []} title="Recent Orders" />
       </Box>
     </AppLayout>
   );

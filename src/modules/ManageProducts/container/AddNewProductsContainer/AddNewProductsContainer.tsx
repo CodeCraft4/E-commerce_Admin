@@ -3,7 +3,7 @@ import { Box, Paper } from "@mui/material";
 import { LeftSideForm, RightSideForm } from "../../components/components";
 import { CustomButton } from "@muc/components";
 import { FormProvider, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface ProductFormInputs {
   productName: string;
@@ -19,8 +19,9 @@ interface ProductFormInputs {
 const AddNewProductsContainer = () => {
   const methods = useForm<ProductFormInputs>();
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const updateProduct = location.state.products
+  const location = useLocation();
+  const updateProduct = location.state?.item;
+  console.log(updateProduct);
 
   const onAddProduct = (data: ProductFormInputs) => {
     console.log(data, "--- Complete Form Data");
@@ -45,33 +46,32 @@ const AddNewProductsContainer = () => {
               }}
             >
               <Box width={"100%"}>
-                <LeftSideForm />
+                <LeftSideForm productDetails={updateProduct} />
               </Box>
               <Box width={"100%"}>
-                <RightSideForm />
+                <RightSideForm productDetails={updateProduct} />
               </Box>
             </Box>
             <Box
               sx={{
-                display: {md:"flex",sm:'flex',xs:'block'},
+                display: { md: "flex", sm: "flex", xs: "block" },
                 justifyContent: "center",
                 gap: "20px",
-                justifySelf: {md:"end",sm:'center',xs:'center'},
+                justifySelf: { md: "end", sm: "center", xs: "center" },
                 alignItems: "flex-end",
-                width: {md:"52%",sm:'90%',xs:'90%'},
+                width: { md: "52%", sm: "90%", xs: "90%" },
               }}
             >
-              {/* {updateProduct && (
+              {updateProduct && (
                 <CustomButton
                   title="Update"
                   variant="contained"
                   width="220px"
                   type="submit"
                 />
-              )} */}
+              )}
               <CustomButton
-                title="Add"
-                // title={`${updateProduct ? 'Delete' : 'Add'}`}
+                title={`${updateProduct ? "Delete" : "Add"}`}
                 variant="contained"
                 width="220px"
                 type="submit"

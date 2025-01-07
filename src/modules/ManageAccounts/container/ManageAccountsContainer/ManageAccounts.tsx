@@ -8,8 +8,7 @@ const ManageAccountsContainer = () => {
       <Box
         sx={{
           display: "flex",
-          gap: "10px",
-          justifyContent: "space-between",
+          gap: "20px",
           flexWrap: "wrap",
         }}
       >
