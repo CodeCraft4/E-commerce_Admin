@@ -1,28 +1,7 @@
-import { useState } from "react";
-import { useForm, FormProvider, Controller } from "react-hook-form";
-import { useDropzone } from "react-dropzone";
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  LinearProgress,
-  MenuItem,
-  Select,
-  Typography,
-} from "@mui/material";
-import { CustomButton, CustomTextField } from "@muc/components";
+import { FormProvider, useForm } from "react-hook-form";
+import { Box, Dialog, DialogContent } from "@mui/material";
+import { CustomButton, CustomTextField, UploadProfile } from "@muc/components";
 import { COLORS } from "@muc/constants";
-import { dragAndDrop } from "@muc/utils";
-
-type FormValues = {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  description: string;
-  role: string;
-  previewImage: File | null;
-};
 
 type ModalProps = {
   open: boolean;
@@ -30,44 +9,7 @@ type ModalProps = {
 };
 
 const ManageAccountModal = ({ open, onClose }: ModalProps) => {
-  const methods = useForm<FormValues>({
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phoneNumber: "",
-      address: "",
-      description: "",
-      role: "",
-      previewImage: null,
-    },
-  });
-
-  const { setValue } = methods;
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [isUploadingPreview, setIsUploadingPreview] = useState<boolean>(false);
-
-  console.log("Current Form Values:", methods.getValues());
-  const handlePreviewDrop = (acceptedFiles: File[]) => {
-    setIsUploadingPreview(true);
-    const file = acceptedFiles[0];
-    const preview = URL.createObjectURL(file);
-
-    setTimeout(() => {
-      setPreviewImage(preview);
-      setIsUploadingPreview(false);
-      setValue("previewImage", file);
-    }, 1500);
-  };
-
-  const previewDropzone = useDropzone({
-    onDrop: handlePreviewDrop,
-    accept: {
-      "image/jpeg": [".jpg", ".jpeg"],
-      "image/png": [".png"],
-      "image/svg": [".svg"],
-    },
-    multiple: false,
-  });
+  const methods = useForm();
 
 
   return (
@@ -146,6 +88,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
               </Box>
 
               {/* Right Side */}
+<<<<<<< Updated upstream
               <Box sx={{ width: "50%" }}>
                 {/* Dropzone */}
                 <Box
@@ -214,6 +157,9 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                   />
                 </Box>
               </Box>
+=======
+              <UploadProfile />
+>>>>>>> Stashed changes
             </Box>
 
             {/* Buttons */}
@@ -222,7 +168,13 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                 display: "flex",
                 justifyContent: "space-between",
                 gap: "16px",
+<<<<<<< Updated upstream
                 mt: -1,
+=======
+                mt: -2,
+                mb: { md: 0, sm: 0, xs: 2 },
+                width: { md: "auto", sm: "auto", xs: "100%" },
+>>>>>>> Stashed changes
               }}
             >
               <CustomButton
