@@ -163,6 +163,26 @@ theme = {
         },
       },
     },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          "& .MuiTableCell-root": {
+            fontWeight: 700,
+            color: COLORS.dark.darBlack,
+          },
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          "& .MuiTableCell-root": {
+            fontWeight: 500,
+            color: COLORS.dark.main,
+          },
+        },
+      },
+    },
 
     MuiCheckbox: {
       styleOverrides: {
@@ -204,6 +224,29 @@ theme = {
         paper: {
           borderRadius: 8,
           boxShadow: "none",
+        },
+      },
+    },
+    MuiPagination: {
+      styleOverrides: {
+        root: {
+          marginTop: "64px",
+        },
+        ul: {
+          "& .MuiPaginationItem-root": {
+            width: "42px",
+            height: "32px",
+            borderRadius: "8px",
+            color: "black",
+            "&:hover": {
+              color: COLORS.white.main,
+              backgroundColor: COLORS.primary.main,
+            },
+          },
+          "& .Mui-selected": {
+            color: COLORS.white.main,
+            backgroundColor: COLORS.primary.main,
+          },
         },
       },
     },
