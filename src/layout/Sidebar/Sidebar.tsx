@@ -48,9 +48,9 @@ export const Sidebar = (props: SidebarProps) => {
           sx={{
             bgcolor: isActive ? COLORS.primary.main : "transparent",
             mb: 1,
-            width: "60%",
+            width: {md:"60%",sm:'70%',xs:'80%'},
             gap: "5px",
-            justifyContent: "space-between",
+            justifyContent:{md:"space-between",sm:'center',xs:'center'},
             ".img": {
               filter: isActive
                 ? "invert(100%) brightness(200%) contrast(200%)"

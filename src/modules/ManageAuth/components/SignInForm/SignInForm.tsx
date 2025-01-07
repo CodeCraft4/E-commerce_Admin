@@ -9,6 +9,11 @@ import {
 import { CustomButton, CustomTextField } from "@muc/components";
 import { COLORS, ROUTES } from "@muc/constants";
 import { ArrowForwardIosOutlined } from "@mui/icons-material";
+<<<<<<< HEAD
+=======
+import { loginSchema } from "@muc/validations";
+import { yupResolver } from "@hookform/resolvers/yup";
+>>>>>>> 1d107c53bb47c2490e73813cacce708fd9fd2123
 import { useNavigate } from "react-router-dom";
 
 interface SignUpFormFields {
@@ -17,11 +22,22 @@ interface SignUpFormFields {
 }
 
 const SignInForm = () => {
+<<<<<<< HEAD
   const methods = useForm<SignUpFormFields>();
   const navigate = useNavigate();
 
   const onSubmit = (e: SignUpFormFields) => {
     console.log(e, "Log in");
+=======
+  const methods = useForm<SignUpFormFields>({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const navigate = useNavigate();
+
+  const onSubmit = (data: SignUpFormFields) => {
+    console.log(data.email.split("@")[0], "Welcome to DASHBOARD");
+>>>>>>> 1d107c53bb47c2490e73813cacce708fd9fd2123
     navigate(ROUTES.ADMIN.DASHBOARD);
   };
 
