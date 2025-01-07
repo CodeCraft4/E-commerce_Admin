@@ -9,6 +9,7 @@ export const ROUTES = {
     ORDERS: "/Orders",
     ANALYTICS: "/Analytics",
     ADD_NEW_PRODUCT: "/Add-New-Product",
-    ACCOUNTS:'/Account'
+    ORDERS_DETAILS: "/Orders-Details",
+    ACCOUNTS: "/Account",
   },
 };
