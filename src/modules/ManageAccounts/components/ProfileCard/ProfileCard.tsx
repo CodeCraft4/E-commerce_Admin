@@ -17,11 +17,7 @@ const ProfileCard = (props: ProfileCardProps) => {
       sx={{
         bgcolor: COLORS.white.main,
         p: 2,
-<<<<<<< HEAD
         width: { md: 280 },
-=======
-        width: {md:200,sm:220},
->>>>>>> 1d107c53bb47c2490e73813cacce708fd9fd2123
         borderRadius: 2,
         justifyContent: "center",
         display: "flex",
