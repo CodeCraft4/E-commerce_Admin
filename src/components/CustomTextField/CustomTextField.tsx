@@ -70,19 +70,27 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
             error={!!fieldState.error}
             helperText={
               showHelperText && fieldState.error?.message ? (
-                <Typography
-                  component="span"
-                  variant="caption"
+                <Box
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    color: "red",
-                    marginLeft: -2,
-                    textTransform: "capitalize",
+                    justifyContent: "flex-end",
+                    mt:-0.5
                   }}
                 >
-                  {fieldState.error.message.toString()}
-                </Typography>
+                  <Typography
+                    component="span"
+                    variant="caption"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      color: "red",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {fieldState.error.message.toString()}
+                  </Typography>
+                </Box>
               ) : (
                 ""
               )
