@@ -7,8 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import { CustomButton, CustomTextField } from "@muc/components";
-import { COLORS } from "@muc/constants";
+import { COLORS, ROUTES } from "@muc/constants";
 import { ArrowForwardIosOutlined } from "@mui/icons-material";
+import { loginSchema } from "@muc/validations";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 interface SignUpFormFields {
   email: string;
@@ -16,10 +19,15 @@ interface SignUpFormFields {
 }
 
 const SignInForm = () => {
-  const methods = useForm<SignUpFormFields>();
+  const methods = useForm<SignUpFormFields>({
+    resolver: yupResolver(loginSchema),
+  });
 
-  const onSubmit = (e: SignUpFormFields) => {
-    console.log(e, "Log in");
+  const navigate = useNavigate();
+
+  const onSubmit = (data: SignUpFormFields) => {
+    console.log(data.email.split("@")[0], "Welcome to DASHBOARD");
+    navigate(ROUTES.ADMIN.DASHBOARD);
   };
 
   return (
@@ -38,13 +46,13 @@ const SignInForm = () => {
             placeHolder="Email or Phone Number"
             type="email"
             name="email"
-            width='406px'
+            width="406px"
           />
           <CustomTextField
             placeHolder="Password"
             type="password"
             name="password"
-            width='406px'
+            width="406px"
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
