@@ -29,3 +29,24 @@ export const dragAndDropGallary = {
   justifyContent: "center",
   position: "relative",
 };
+
+
+export const orderCardStyle={
+  bgcolor: COLORS.white.main,
+  width: { md: "250px", sm: "220px", xs: "100%" },
+  borderRadius: "16px",
+  padding: "24px 16px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "8px",
+}
+
+export const orderIconStyle={
+  width: "40px",
+  height: "40px",
+  borderRadius: "8px",
+  bgcolor: COLORS.primary.main,
+  display: "flex",
+  justifyContent: "center",
+  alignItems:"center",
+}
