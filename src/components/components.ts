@@ -5,3 +5,5 @@ export { default as TitleHeader } from "./TitleHeader/TitleHeader";
 export { default as CategoriesMenu } from "./Categories/Categories";
 export { default as OnSuccessModal } from "./OnSuccessModal/OnSuccessModal";
 export { default as ManageAccountModal } from "./ManageAccountModal/ManageAccountModal";
+export { default as DataTable } from "./DataTable/DataTable";
+export { default as MenuButton } from "./MenuButton/MenuButton";
