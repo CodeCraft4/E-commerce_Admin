@@ -26,55 +26,53 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
   } = props || {};
 
   return (
-      <Button
-        type={type ? type : "button"}
-        variant={variant}
-        onClick={onClick}
-        disabled={disabled}
-        fullWidth
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+    <Button
+      type={type ? type : "button"}
+      variant={variant}
+      onClick={onClick}
+      disabled={disabled}
+      fullWidth
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        boxShadow: "none",
+        mb: { xs: 1 },
+        width: {
+          md: width ? width : "auto",
+          sm: width ? width : "auto",
+          xs: "100%",
+        },
+        textTransform: "none",
+        "&:hover": {
+          bgcolor: variant === "outlined" ? "transparent" : COLORS.primary.main,
           boxShadow: "none",
-          width: {
-            md: width ? width : "auto",
-            sm: width ? width : "auto",
-            xs: "100%",
-          },
-          textTransform: "none",
-          "&:hover": {
-            bgcolor:
-              variant === "outlined" ? "transparent" : COLORS.primary.main,
-            boxShadow: "none",
-          },
-        }}
-      >
-        {isLoading ? (
-          <CircularProgress
-            sx={{
-              color:
-                variant === "outlined"
-                  ? COLORS.primary.main
-                  : COLORS.white.main,
-            }}
-            size={25}
-          />
-        ) : (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: icon ? "space-between" : "center",
-              alignItems: "center",
-              width: title ? "100%" : "auto",
-              gap: title ? "8px" : "0",
-            }}
-          >
-            {title?.toUpperCase()}
-            {icon}
-          </Box>
-        )}
-      </Button>
+        },
+      }}
+    >
+      {isLoading ? (
+        <CircularProgress
+          sx={{
+            color:
+              variant === "outlined" ? COLORS.primary.main : COLORS.white.main,
+          }}
+          size={25}
+        />
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: icon ? "space-between" : "center",
+            alignItems: "center",
+            width: title ? "100%" : "auto",
+            gap: title ? "8px" : "0",
+          }}
+        >
+          {title?.toUpperCase()}
+          {icon}
+        </Box>
+      )}
+    </Button>
   );
 };
 

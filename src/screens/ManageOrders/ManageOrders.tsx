@@ -1,10 +1,10 @@
-import { ManageOrdersContainer } from "@muc/modules";
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 const ManageOrders = () => {
   return (
     <React.Fragment>
-      <ManageOrdersContainer />
+      <Outlet />
     </React.Fragment>
   );
 };

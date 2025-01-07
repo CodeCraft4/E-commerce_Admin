@@ -9,5 +9,7 @@ export const ROUTES = {
     ORDERS: "/Orders",
     ANALYTICS: "/Analytics",
     ADD_NEW_PRODUCT: "/Add-New-Product",
+    ORDERS_DETAILS: "/Orders-Details",
+    ACCOUNTS: "/Account",
   },
 };

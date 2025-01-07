@@ -54,10 +54,18 @@ const AppLayout = (props: Props) => {
       >
         <Sidebar open={isSideBarOpen} onClose={handleSideBarToggle} />
       </Box>
-      <Box sx={{ position: "absolute", display: { sm: "none", xs: "block" } }}>
+      <Box
+        sx={{
+          position: "absolute",
+          display: { sm: "none", xs: "block" },
+          bgcolor: COLORS.primary.main,
+          width: "100%",
+          zIndex:999
+        }}
+      >
         <IconButton
           sx={{
-            color: COLORS.primary.main,
+            color: COLORS.secondary.main,
           }}
           aria-label="open sidebar"
           onClick={handleSideBarToggle}

@@ -37,8 +37,14 @@ const AddNewProductsContainer = () => {
           }}
         >
           <Box component={Paper}>
-            <Box sx={{ display: "flex", gap: "20px", p: 2 }}>
-              <Box>
+            <Box
+              sx={{
+                display: { md: "flex", sm: "block", xs: "block" },
+                gap: { md: "20px" },
+                p: 2,
+              }}
+            >
+              <Box width={"100%"}>
                 <LeftSideForm />
               </Box>
               <Box width={"100%"}>
@@ -47,12 +53,12 @@ const AddNewProductsContainer = () => {
             </Box>
             <Box
               sx={{
-                display: "flex",
+                display: {md:"flex",sm:'flex',xs:'block'},
                 justifyContent: "center",
                 gap: "20px",
-                justifySelf: "end",
+                justifySelf: {md:"end",sm:'center',xs:'center'},
                 alignItems: "flex-end",
-                width: "52%",
+                width: {md:"52%",sm:'90%',xs:'90%'},
               }}
             >
               {/* {updateProduct && (

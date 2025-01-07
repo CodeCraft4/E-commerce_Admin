@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography, useMediaQuery } from "@mui/material";
 import { Controller, RegisterOptions, useFormContext } from "react-hook-form";
+import { theme } from "@muc/styles";
 
 interface CustomTextFieldProps {
   name: string;
@@ -34,6 +35,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
   ...props
 }) => {
   const { control } = useFormContext();
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
     <Box width={{ md: width, sm: width, xs: "auto" }} pb={2}>
@@ -52,7 +54,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
             {...props}
             fullWidth
             multiline={multiline}
-            rows={multiline ? 4 : 1}
+            rows={multiline ? (isSmUp ? 4 : 8) : 1}
             sx={{
               width: {
                 md: width ? width : "auto",

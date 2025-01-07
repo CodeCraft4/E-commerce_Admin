@@ -48,9 +48,9 @@ export const Sidebar = (props: SidebarProps) => {
           sx={{
             bgcolor: isActive ? COLORS.primary.main : "transparent",
             mb: 1,
-            width: "70%",
+            width: "60%",
             gap: "5px",
-            justifyContent:'space-evenly',
+            justifyContent: "space-between",
             ".img": {
               filter: isActive
                 ? "invert(100%) brightness(200%) contrast(200%)"
@@ -83,14 +83,29 @@ export const Sidebar = (props: SidebarProps) => {
   return (
     <Drawer
       variant={isSmUp ? "permanent" : "temporary"}
-      sx={{ height: "100vh" }}
+      PaperProps={{
+        sx: {
+          height: "100vh",
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "5px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: COLORS.primary.main,
+            borderRadius: "50px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "transparent",
+          },
+        },
+      }}
       {...props}
     >
       <List
         className="MuiList-sideBar-menu"
         component={"ul"}
         sx={{
-          width: { md: 260, sm: 200, xs: 180 },
+          width: { md: 260, sm: 200, xs: 200 },
           height: "100%",
           backgroundSize: "cover",
           display: "flex",
@@ -124,7 +139,7 @@ export const Sidebar = (props: SidebarProps) => {
           path: ROUTES.ADMIN.ORDERS,
           icon: "/assets/icons/orderlist-icon.svg",
           active: [ROUTES.ADMIN.ORDERS],
-          title: "ORDER LIST",
+          title: "ORDER LIST ",
         })}
         {generateListItem({
           path: ROUTES.ADMIN.ACCOUNTS,

@@ -11,7 +11,6 @@ type ModalProps = {
 const ManageAccountModal = ({ open, onClose }: ModalProps) => {
   const methods = useForm();
 
-
   return (
     <Dialog
       open={open}
@@ -19,9 +18,20 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
       PaperProps={{
         sx: {
           position: "absolute",
-          top: 50,
-          width: "80%",
-          left: 245,
+          top: { md: 50, sm: 0, xs: 0 },
+          width: { md: "80%", sm: "80%", xs: "auto" },
+          left: { md: 245, sm: 50, xs: -0 },
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            width: "5px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: COLORS.secondary.main,
+            borderRadius: "50px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "transparent",
+          },
         },
       }}
       maxWidth="lg"
@@ -40,7 +50,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
           >
             <Box
               sx={{
-                display: "flex",
+                display: { md: "flex", sm: "block", xs: "block" },
                 gap: "16px",
                 justifyContent: "center",
                 width: "100%",
@@ -48,7 +58,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
               component="form"
             >
               {/* Left Side Inputs */}
-              <Box sx={{ width: "50%" }}>
+              <Box sx={{ width: { md: "50%", sm: "100%", xs: "100%" } }}>
                 <CustomTextField
                   label="Full Name"
                   name="fullName"
@@ -88,93 +98,18 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
               </Box>
 
               {/* Right Side */}
-<<<<<<< Updated upstream
-              <Box sx={{ width: "50%" }}>
-                {/* Dropzone */}
-                <Box
-                  {...previewDropzone.getRootProps()}
-                  sx={{
-                    ...dragAndDrop,
-                    width: 320,
-                    height: 320,
-                    borderRadius: 50,
-                    display: "flex",
-                    m: "auto",
-                  }}
-                >
-                  <input {...previewDropzone.getInputProps()} />
-                  {isUploadingPreview ? (
-                    <Box
-                      sx={{ width: "50%", position: "absolute", top: "50%" }}
-                    >
-                      <LinearProgress
-                        sx={{
-                          color: COLORS.primary.main,
-                          borderRadius: "10px",
-                        }}
-                      />
-                    </Box>
-                  ) : previewImage ? (
-                    <Box
-                      component="img"
-                      src={previewImage}
-                      alt="Preview"
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: 50,
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : (
-                    <Box>
-                      <Box
-                        component="img"
-                        src="/assets/icons/dragDrop-icon.svg"
-                      />
-                      <Typography variant="h6" color={COLORS.primary.main}>
-                        Drag and drop your image here
-                      </Typography>
-                    </Box>
-                  )}
-                </Box>
-
-                {/* Role Dropdown */}
-                <Box sx={{ mt: 1 }}>
-                  <Typography variant="h6" fontWeight={600} mb={1}>
-                    Role
-                  </Typography>
-                  <Controller
-                    name="role"
-                    control={methods.control}
-                    render={({ field }) => (
-                      <Select {...field} fullWidth>
-                        <MenuItem value="Administrator">Administrator</MenuItem>
-                        <MenuItem value="Contributor">Contributor</MenuItem>
-                        <MenuItem value="Moderator">Moderator</MenuItem>
-                      </Select>
-                    )}
-                  />
-                </Box>
-              </Box>
-=======
               <UploadProfile />
->>>>>>> Stashed changes
             </Box>
 
             {/* Buttons */}
             <Box
               sx={{
-                display: "flex",
+                display: { md: "flex", sm: "flex", xs: "block" },
                 justifyContent: "space-between",
                 gap: "16px",
-<<<<<<< Updated upstream
-                mt: -1,
-=======
                 mt: -2,
                 mb: { md: 0, sm: 0, xs: 2 },
                 width: { md: "auto", sm: "auto", xs: "100%" },
->>>>>>> Stashed changes
               }}
             >
               <CustomButton

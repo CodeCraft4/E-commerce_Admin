@@ -1,10 +1,13 @@
 import { ROUTES } from "@muc/constants";
 import {
   AddNewProductsContainer,
+  ManageOrderDetailsContainer,
+  ManageOrdersContainer,
   ManageProductsContainer,
   SignInContainer,
 } from "@muc/modules";
 import {
+  ManageAccount,
   ManageAnalytics,
   ManageAuth,
   ManageDashboard,
@@ -31,8 +34,16 @@ const Routes = () => {
           element={<AddNewProductsContainer />}
         />
       </Route>
-      <Route path={ROUTES.ADMIN.ORDERS} element={<ManageOrders />} />
+      <Route element={<ManageOrders />}>
+        <Route path={ROUTES.ADMIN.ORDERS} element={<ManageOrdersContainer />} />
+        <Route
+          path={ROUTES.ADMIN.ORDERS_DETAILS}
+          element={<ManageOrderDetailsContainer />}
+        />
+      </Route>
+
       <Route path={ROUTES.ADMIN.ANALYTICS} element={<ManageAnalytics />} />
+      <Route path={ROUTES.ADMIN.ACCOUNTS} element={<ManageAccount />} />
     </ReactRoutes>
   );
 };
