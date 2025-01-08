@@ -118,29 +118,34 @@ const DataTable = (props: tableDataType) => {
               </TableCell>
               <TableCell>#{row.orderId}</TableCell>
               <TableCell>{row.date}</TableCell>
-              <TableCell
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-                align="center"
-              >
-                <Avatar
-                  variant="circular"
-                  sx={{ width: "24px", height: "24px", fontSize: "12px" }}
+              <TableCell align="center">
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
                 >
-                  {row?.poster ? (
-                    <Box
-                      component={"img"}
-                      src={row?.poster}
-                      sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  ) : (
-                    row.customerName.slice(0, 1)
-                  )}
-                </Avatar>
-                <Typography variant="body1">{row.customerName}</Typography>
+                  <Avatar
+                    variant="circular"
+                    sx={{ width: "24px", height: "24px", fontSize: "12px" }}
+                  >
+                    {row?.poster ? (
+                      <Box
+                        component={"img"}
+                        src={row?.poster}
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      row.customerName.slice(0, 1)
+                    )}
+                  </Avatar>
+                  <Typography variant="body1">{row.customerName}</Typography>
+                </Box>
               </TableCell>
               <TableCell>
                 <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
@@ -164,7 +169,9 @@ const DataTable = (props: tableDataType) => {
                   ${row.amount}
                   <IconButton
                     onClick={() =>
-                      navigate(ROUTES.ADMIN.ORDERS_DETAILS, { state: { row } })
+                      navigate(ROUTES.ADMIN.ORDERS_DETAILS, {
+                        state: { order: [row] },
+                      })
                     }
                   >
                     <ArrowForwardIos fontSize="small" />

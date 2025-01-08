@@ -24,8 +24,8 @@ const ManageDashboardContainer = () => {
       >
         {ORDER_RECORD.map((item) => (
           <OrdersAnalytics
+            id={item.id}
             title={item.title}
-            icon={item.img}
             percentage={item.percentage}
             price={item.price}
             date={"oct 20 2024"}

@@ -138,7 +138,7 @@ export const Sidebar = (props: SidebarProps) => {
         {generateListItem({
           path: ROUTES.ADMIN.ORDERS,
           icon: "/assets/icons/orderlist-icon.svg",
-          active: [ROUTES.ADMIN.ORDERS],
+          active: [ROUTES.ADMIN.ORDERS,ROUTES.ADMIN.ORDERS_DETAILS],
           title: "ORDER LIST ",
         })}
         {generateListItem({

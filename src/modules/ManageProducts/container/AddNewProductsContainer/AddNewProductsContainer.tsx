@@ -56,9 +56,9 @@ const AddNewProductsContainer = () => {
               sx={{
                 display: { md: "flex", sm: "flex", xs: "block" },
                 justifyContent: "center",
+                alignItems: "center",
+                m: "auto",
                 gap: "20px",
-                justifySelf: { md: "end", sm: "center", xs: "center" },
-                alignItems: "flex-end",
                 width: { md: "52%", sm: "90%", xs: "90%" },
               }}
             >

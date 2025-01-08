@@ -2,28 +2,28 @@ import { OrdersType, ProductType, SellerType, TableData } from "@muc/types";
 
 export const ORDER_RECORD: OrdersType[] = [
   {
-    img: "assets/icons/shopIcon.svg",
-    title: "Total Oders",
+    id: 1,
+    title: "Total Orders",
     price: 126.5,
     percentage: 34.7,
     date: "oct 20 2023",
   },
   {
-    img: "assets/icons/shopIcon.svg",
+    id: 2,
     title: "Active Orders",
     price: 126.5,
     percentage: 34.7,
     date: "oct 20 2023",
   },
   {
-    img: "assets/icons/shopIcon.svg",
+    id: 3,
     title: "Completed Orders",
     price: 126.5,
     percentage: 34.7,
     date: "oct 10 2023",
   },
   {
-    img: "assets/icons/shopIcon.svg",
+    id: 4,
     title: "Return Orders",
     price: 126.5,
     percentage: 34.7,
@@ -34,61 +34,79 @@ export const ORDER_RECORD: OrdersType[] = [
 export const ORDERS_TABLE_DATA: TableData[] = [
   {
     id: 1,
-    poster:'',
+    poster: "",
     productName: "Nike",
     orderId: 25426,
     date: "Nov 8th, 2023",
+    email: "test@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Kavin",
     status: "Delivered",
+    product: ["Table", "Toys", "Phone"],
     amount: 200.0,
   },
   {
     id: 2,
-    poster:'',
+    poster: "",
     productName: "Computer",
     orderId: 2542,
     date: "Nov 7th, 2023",
+    email: "124test@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Komael",
+    product: ["Table", "Toys", "CPU", "Shoes"],
     status: "Canceled",
     amount: 220.0,
   },
   {
     id: 3,
-    poster:'',
+    poster: "",
     productName: "Shoes",
     orderId: 25424,
     date: "Nov 6th, 2023",
+    email: "2828@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Nikhil",
+    product: ["Table", "Phone"],
     status: "Delivered",
     amount: 20.0,
   },
   {
     id: 4,
-    poster:'',
+    poster: "",
     productName: "Cloths",
     orderId: 255423,
     date: "Nov 5th, 2023",
+    email: "124test@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Shivam",
+    product: ["Toys", "Phone"],
     status: "Canceled",
     amount: 100.0,
   },
   {
     id: 5,
-    poster:'',
+    poster: "",
     productName: "Socs",
     orderId: 25426,
     date: "Nov 4th, 2023",
+    email: "1990test@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Shadab",
     status: "Delivered",
+    product: ["Table", "Toys"],
     amount: 500.0,
   },
   {
     id: 6,
-    poster:'',
+    poster: "",
     productName: "Phone",
     orderId: 25421,
     date: "Nov 2nd, 2023",
+    email: "asad@gmail.com",
+    phoneNumber: 1234567890,
     customerName: "Yogesh",
+    product: ["Table", "Toys", "Phone"],
     status: "Delivered",
     amount: 30.0,
   },
@@ -166,6 +184,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     remainingProduct: 321,
     img: "https://via.placeholder.com/150?text=Router",
     price: 99.99,
+    paymentMethods: "Master Card",
   },
   {
     title: "Smartphone",
@@ -175,6 +194,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 4599,
     remainingProduct: 61,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Debit Card",
     price: 499.99,
   },
   {
@@ -185,6 +205,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3808,
     remainingProduct: 22,
     img: "https://via.placeholder.com/150?text=Keyboard",
+    paymentMethods: "Info Card",
     price: 49.99,
   },
   {
@@ -195,6 +216,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1887,
     remainingProduct: 293,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 299.99,
   },
   {
@@ -205,6 +227,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3464,
     remainingProduct: 323,
     img: "https://via.placeholder.com/150?text=Headphones",
+    paymentMethods: "Master Card",
     price: 89.99,
   },
   {
@@ -215,6 +238,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3988,
     remainingProduct: 30,
     img: "https://via.placeholder.com/150?text=Laptop",
+    paymentMethods: "Master Card",
     price: 799.99,
   },
   {
@@ -225,6 +249,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 4564,
     remainingProduct: 370,
     img: "https://via.placeholder.com/150?text=Laptop",
+    paymentMethods: "Master Card",
     price: 799.99,
   },
   {
@@ -235,6 +260,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2967,
     remainingProduct: 10,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 349.99,
   },
   {
@@ -245,6 +271,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2096,
     remainingProduct: 169,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 299.99,
   },
   {
@@ -255,6 +282,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2863,
     remainingProduct: 360,
     img: "https://via.placeholder.com/150?text=Keyboard",
+    paymentMethods: "Master Card",
     price: 49.99,
   },
   {
@@ -265,6 +293,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3408,
     remainingProduct: 258,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Master Card",
     price: 499.99,
   },
   {
@@ -275,6 +304,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3375,
     remainingProduct: 116,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Master Card",
     price: 499.99,
   },
   {
@@ -285,6 +315,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 930,
     remainingProduct: 297,
     img: "https://via.placeholder.com/150?text=Laptop",
+    paymentMethods: "Master Card",
     price: 799.99,
   },
   {
@@ -295,6 +326,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2245,
     remainingProduct: 170,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Master Card",
     price: 499.99,
   },
   {
@@ -305,6 +337,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2953,
     remainingProduct: 261,
     img: "https://via.placeholder.com/150?text=Battery",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -315,6 +348,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2965,
     remainingProduct: 445,
     img: "https://via.placeholder.com/150?text=Keyboard",
+    paymentMethods: "Master Card",
     price: 49.99,
   },
   {
@@ -325,6 +359,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1409,
     remainingProduct: 205,
     img: "https://via.placeholder.com/150?text=Keyboard",
+    paymentMethods: "Master Card",
     price: 49.99,
   },
   {
@@ -335,6 +370,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2846,
     remainingProduct: 242,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 349.99,
   },
   {
@@ -345,6 +381,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 752,
     remainingProduct: 294,
     img: "https://via.placeholder.com/150?text=Charger",
+    paymentMethods: "Master Card",
     price: 19.99,
   },
   {
@@ -355,6 +392,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3513,
     remainingProduct: 309,
     img: "https://via.placeholder.com/150?text=Headphones",
+    paymentMethods: "Master Card",
     price: 89.99,
   },
   {
@@ -365,6 +403,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2737,
     remainingProduct: 185,
     img: "https://via.placeholder.com/150?text=Headphones",
+    paymentMethods: "Master Card",
     price: 89.99,
   },
   {
@@ -375,6 +414,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 621,
     remainingProduct: 335,
     img: "https://via.placeholder.com/150?text=Router",
+    paymentMethods: "Master Card",
     price: 99.99,
   },
   {
@@ -385,6 +425,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2522,
     remainingProduct: 387,
     img: "https://via.placeholder.com/150?text=Battery",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -395,6 +436,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 4229,
     remainingProduct: 433,
     img: "https://via.placeholder.com/150?text=Battery",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -405,6 +447,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1147,
     remainingProduct: 11,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Master Card",
     price: 499.99,
   },
   {
@@ -415,6 +458,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 4136,
     remainingProduct: 157,
     img: "https://via.placeholder.com/150?text=Charger",
+    paymentMethods: "Master Card",
     price: 19.99,
   },
   {
@@ -425,6 +469,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 4517,
     remainingProduct: 143,
     img: "https://via.placeholder.com/150?text=Headphones",
+    paymentMethods: "Master Card",
     price: 89.99,
   },
   {
@@ -435,6 +480,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2244,
     remainingProduct: 316,
     img: "https://via.placeholder.com/150?text=Battery",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -445,6 +491,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3145,
     remainingProduct: 499,
     img: "https://via.placeholder.com/150?text=Battery",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -455,6 +502,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1409,
     remainingProduct: 364,
     img: "https://via.placeholder.com/150?text=Smartphone",
+    paymentMethods: "Master Card",
     price: 499.99,
   },
   {
@@ -465,6 +513,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 450,
     remainingProduct: 381,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 349.99,
   },
   {
@@ -475,6 +524,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2363,
     remainingProduct: 109,
     img: "https://via.placeholder.com/150?text=Charger",
+    paymentMethods: "Master Card",
     price: 19.99,
   },
   {
@@ -485,6 +535,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1769,
     remainingProduct: 230,
     img: "https://via.placeholder.com/150?text=Mouse",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -495,6 +546,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 866,
     remainingProduct: 192,
     img: "https://via.placeholder.com/150?text=Monitor",
+    paymentMethods: "Master Card",
     price: 179.99,
   },
   {
@@ -505,6 +557,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3902,
     remainingProduct: 59,
     img: "https://via.placeholder.com/150?text=Charger",
+    paymentMethods: "Master Card",
     price: 19.99,
   },
   {
@@ -515,6 +568,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 1630,
     remainingProduct: 163,
     img: "https://via.placeholder.com/150?text=Laptop",
+    paymentMethods: "Master Card",
     price: 799.99,
   },
   {
@@ -525,6 +579,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2340,
     remainingProduct: 96,
     img: "https://via.placeholder.com/150?text=Monitor",
+    paymentMethods: "Master Card",
     price: 179.99,
   },
   {
@@ -535,6 +590,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 3893,
     remainingProduct: 178,
     img: "https://via.placeholder.com/150?text=Tablet",
+    paymentMethods: "Master Card",
     price: 349.99,
   },
   {
@@ -545,6 +601,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2744,
     remainingProduct: 312,
     img: "https://via.placeholder.com/150?text=Mouse",
+    paymentMethods: "Master Card",
     price: 29.99,
   },
   {
@@ -555,6 +612,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2859,
     remainingProduct: 415,
     img: "https://via.placeholder.com/150?text=Monitor",
+    paymentMethods: "Master Card",
     price: 179.99,
   },
   {
@@ -565,6 +623,7 @@ export const PRODUCTS_DATA: ProductType[] = [
     sales: 2845,
     remainingProduct: 111,
     img: "https://via.placeholder.com/150?text=Laptop",
+    paymentMethods: "Master Card",
     price: 799.99,
   },
 ];

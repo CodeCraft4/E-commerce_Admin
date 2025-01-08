@@ -1,8 +1,16 @@
 import { AppLayout } from "@muc/layout";
 import { Box } from "@mui/material";
 import { ProfileCard } from "../../components/component";
+import { useModal } from "@muc/hooks";
+import { ManageAccountModal } from "@muc/components";
 
 const ManageAccountsContainer = () => {
+  const {
+    Open: isOpenAccountModal,
+    onClose: closeAccountModal,
+    onOpen: openAccountModal,
+  } = useModal();
+
   return (
     <AppLayout title="Accounts" path="Home">
       <Box
@@ -18,9 +26,16 @@ const ManageAccountsContainer = () => {
             profile="/assets/images/authImg.svg"
             role="Administrator"
             description={` Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, dolore.`}
+            openAccountModal={openAccountModal}
           />
         ))}
       </Box>
+      {isOpenAccountModal && (
+        <ManageAccountModal
+          open={isOpenAccountModal}
+          onClose={closeAccountModal}
+        />
+      )}
     </AppLayout>
   );
 };

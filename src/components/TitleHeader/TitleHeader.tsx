@@ -42,7 +42,7 @@ const TitleHeader = (props: HeaderTypes) => {
                 color: COLORS.primary.main,
               },
             }}
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(ROUTES.ADMIN.DASHBOARD ? 0 : -1)}
           >
             {" "}
             {path}
@@ -57,7 +57,7 @@ const TitleHeader = (props: HeaderTypes) => {
                 color: COLORS.primary.main,
               },
             }}
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(+1)}
           >
             {" "}
             {formattedPathname}

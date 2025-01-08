@@ -1,6 +1,5 @@
 import { CustomButton } from "@muc/components";
 import { COLORS, SELLER_DATA } from "@muc/constants";
-import { MoreVert } from "@mui/icons-material";
 import { Box, Divider, Typography } from "@mui/material";
 
 const BestSellersList = () => {
@@ -18,15 +17,12 @@ const BestSellersList = () => {
           gap: "16px",
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
             variant="body2"
             sx={{ fontWeight: 600, fontSize: "16px" }}
           >
             Best Sallers
           </Typography>
-          <MoreVert />
-        </Box>
         <Divider />
 
         <Box

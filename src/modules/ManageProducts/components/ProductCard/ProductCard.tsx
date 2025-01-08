@@ -2,7 +2,7 @@ import { Box, Divider, LinearProgress, Typography } from "@mui/material";
 import { COLORS, ROUTES } from "@muc/constants";
 import EditIcon from "@mui/icons-material/Edit";
 import { MenuButton } from "@muc/components";
-import { Delete, MoreVertOutlined } from "@mui/icons-material";
+import { ArrowUpwardOutlined, Delete, MoreVertOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "@muc/types";
 
@@ -32,7 +32,7 @@ const ProductCard = (props: ItemType) => {
         <Box sx={{ display: "flex", gap: "16px" }}>
           <img
             src={item?.img}
-            style={{ width: "84px", height: "84px" }}
+            style={{ width: "84px", height: "84px",borderRadius:3 }}
             alt="item"
           />
           <Box
@@ -116,8 +116,8 @@ const ProductCard = (props: ItemType) => {
             >
               Sales
             </Typography>
-            <Box sx={{ display: "flex", gap: "8px" }}>
-              <img src="assets/icons/salesArrow.svg" alt="increase" />
+            <Box sx={{ display: "flex", gap: "5px",alignItems:'center' }}>
+              <ArrowUpwardOutlined sx={{fontSize:'16px'}}/>
               <Typography
                 variant="body1"
                 sx={{ opacity: "60%", fontWeight: 600 }}
@@ -143,7 +143,7 @@ const ProductCard = (props: ItemType) => {
                 variant="determinate"
                 color="warning"
                 value={60}
-                sx={{ height: "4px", width: "52px" }}
+                sx={{ height: "4px", width: "52px",borderRadius:2 }}
               />
 
               <Typography

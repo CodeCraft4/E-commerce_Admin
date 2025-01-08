@@ -11,9 +11,10 @@ import { COLORS } from "@muc/constants";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useFormContext } from "react-hook-form";
 import { dragAndDrop, dragAndDropGallary } from "@muc/utils";
+import { ProductType } from "@muc/types";
 
-type ProductType = {
-  productDetails: any;
+type ProductUpdateType = {
+  productDetails: ProductType;
 };
 
 type ImageFile = {
@@ -21,7 +22,7 @@ type ImageFile = {
   name: string;
 };
 
-const RightSideForm = (props: ProductType) => {
+const RightSideForm = (props: ProductUpdateType) => {
   const { productDetails } = props || {};
 
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -101,7 +102,7 @@ const RightSideForm = (props: ProductType) => {
         ) : previewImage ? (
           <Box
             component="img"
-            src={productDetails?.img ? productDetails?.img : previewImage}
+            src={previewImage}
             alt="Preview"
             sx={{
               width: { md: "100%", sm: "100%", xs: "100%" },
@@ -111,12 +112,26 @@ const RightSideForm = (props: ProductType) => {
             }}
           />
         ) : (
-          <Box>
-            <Box component={"img"} src="/assets/icons/dragDrop-icon.svg" />
-            <Typography variant="h6" color={COLORS.primary.main}>
-              Drag and drop your image here
-            </Typography>
-          </Box>
+          <>
+            {productDetails?.img ? (
+              <Box
+                component={"img"}
+                src={productDetails?.img}
+                sx={{
+                  width: productDetails ? "100%" : 0,
+                  height: productDetails ? "100%" : 0,
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <Box>
+                <Box component={"img"} src="/assets/icons/dragDrop-icon.svg" />
+                <Typography variant="h6" color={COLORS.primary.main}>
+                  Drag and drop your image here
+                </Typography>
+              </Box>
+            )}
+          </>
         )}
       </Box>
 

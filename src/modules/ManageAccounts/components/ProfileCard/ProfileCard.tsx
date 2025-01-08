@@ -8,10 +8,11 @@ type ProfileCardProps = {
   role: string;
   description?: string;
   name: string;
+  openAccountModal: () => void;
 };
 
 const ProfileCard = (props: ProfileCardProps) => {
-  const { profile, role, description, name } = props || {};
+  const { profile, role, description, name, openAccountModal } = props || {};
   return (
     <Box
       sx={{
@@ -34,6 +35,7 @@ const ProfileCard = (props: ProfileCardProps) => {
           DeleteTitle="Delete"
           title="Edit"
           Icon={<Edit />}
+          onEdit={openAccountModal}
         />
       </Box>
       <Box

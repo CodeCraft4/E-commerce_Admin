@@ -1,5 +1,5 @@
 export type OrdersType ={
-    img: string;
+    id: number;
     title: string;
     price: number;
     percentage: number;
@@ -13,8 +13,13 @@ export type TableData ={
     poster:string,
     date: string;
     customerName: string;
+    product?:string[];
+    email?:string,
+    phoneNumber?:number;
     status: string;
     amount: number;
+    paymentMethods?:string
+
 }
 
 export type SellerType={
@@ -32,4 +37,5 @@ export type ProductType={
     remainingProduct: number;
     img: string;
     price: number;
+    paymentMethods?:string
 }
