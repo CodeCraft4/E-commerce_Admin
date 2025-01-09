@@ -14,7 +14,7 @@ const ManageDashboardContainer = () => {
       <Box
         sx={{
           display: "flex",
-          gap: "14px",
+          gap: "10px",
           alignItems: "center",
           my: { md: 2 },
           flexWrap: "wrap",
@@ -35,8 +35,9 @@ const ManageDashboardContainer = () => {
       <Box
         sx={{
           display: { md: "flex", sm: "block", xs: "block" },
-          gap: "16px",
+          gap: "18px",
           width: "100%",
+          flexWrap:'wrap',
         }}
       >
         <SellerGraph />
