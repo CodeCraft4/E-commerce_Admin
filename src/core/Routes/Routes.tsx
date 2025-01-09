@@ -1,4 +1,6 @@
 import { ROUTES } from "@muc/constants";
+import { useAuth } from "@muc/context";
+import { SecureRoute } from "@muc/hoc";
 import {
   AddNewProductsContainer,
   ManageOrderDetailsContainer,
@@ -9,41 +11,49 @@ import {
 import {
   ManageAccount,
   ManageAnalytics,
-  ManageAuth,
   ManageDashboard,
   ManageOrders,
   ManageProducts,
 } from "@muc/screens";
-import { Routes as ReactRoutes, Route } from "react-router-dom";
+import { Routes as ReactRoutes, Route, Navigate } from "react-router-dom";
+
 
 const Routes = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <ReactRoutes>
-      <Route element={<ManageAuth />}>
-        <Route path={"/"} element={<SignInContainer />} />
-        <Route path={ROUTES.AUTH.SIGN_IN} element={<SignInContainer />} />
-      </Route>
-      <Route path={ROUTES.ADMIN.DASHBOARD} element={<ManageDashboard />} />
-      <Route element={<ManageProducts />}>
-        <Route
-          path={ROUTES.ADMIN.PRODUCTS}
-          element={<ManageProductsContainer />}
-        />
-        <Route
-          path={ROUTES.ADMIN.ADD_NEW_PRODUCT}
-          element={<AddNewProductsContainer />}
-        />
-      </Route>
-      <Route element={<ManageOrders />}>
-        <Route path={ROUTES.ADMIN.ORDERS} element={<ManageOrdersContainer />} />
-        <Route
-          path={ROUTES.ADMIN.ORDERS_DETAILS}
-          element={<ManageOrderDetailsContainer />}
-        />
+      <Route element={<SecureRoute />}>
+        <Route path={ROUTES.ADMIN.DASHBOARD} element={<ManageDashboard />} />
+        <Route element={<ManageProducts />}>
+          <Route
+            path={ROUTES.ADMIN.PRODUCTS}
+            element={<ManageProductsContainer />}
+          />
+          <Route
+            path={ROUTES.ADMIN.ADD_NEW_PRODUCT}
+            element={<AddNewProductsContainer />}
+          />
+        </Route>
+        <Route element={<ManageOrders />}>
+          <Route
+            path={ROUTES.ADMIN.ORDERS}
+            element={<ManageOrdersContainer />}
+          />
+          <Route
+            path={ROUTES.ADMIN.ORDERS_DETAILS}
+            element={<ManageOrderDetailsContainer />}
+          />
+        </Route>
+        <Route path={ROUTES.ADMIN.ANALYTICS} element={<ManageAnalytics />} />
+        <Route path={ROUTES.ADMIN.ACCOUNTS} element={<ManageAccount />} />
       </Route>
 
-      <Route path={ROUTES.ADMIN.ANALYTICS} element={<ManageAnalytics />} />
-      <Route path={ROUTES.ADMIN.ACCOUNTS} element={<ManageAccount />} />
+      <Route
+        path={ROUTES.AUTH.SIGN_IN}
+        element={isLoggedIn ? <Navigate to={ROUTES.ADMIN.DASHBOARD} /> : <SignInContainer />}
+      />
+      <Route path="/" element={<Navigate to={ROUTES.AUTH.SIGN_IN} />} />
     </ReactRoutes>
   );
 };
