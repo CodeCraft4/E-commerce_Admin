@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import Routes from "../Routes/Routes";
 import { theme } from "@muc/styles";
 import { AuthProvider, NotificationContextProvider } from "@muc/context";
-import { SnackBar } from "@muc/components";
+import { NotificationShow } from "@muc/components";
 
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
       <NotificationContextProvider>
         <AuthProvider>
           <Routes />
-          <SnackBar />
+          <NotificationShow />
         </AuthProvider>
       </NotificationContextProvider>
     </ThemeProvider>

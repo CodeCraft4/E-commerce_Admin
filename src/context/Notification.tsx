@@ -8,6 +8,7 @@ type AlertState = {
     subTitle: string;
   };
   variant?: AlertColor;
+  icon?: React.ReactNode;
 };
 
 type NotificationContextType = {
@@ -15,6 +16,7 @@ type NotificationContextType = {
   alert: AlertState;
 };
 
+// Create the Notification Context
 export const NotificationContext = createContext<NotificationContextType>({
   setAlert: () => {},
   alert: {
@@ -24,6 +26,7 @@ export const NotificationContext = createContext<NotificationContextType>({
       subTitle: "",
     },
     variant: undefined,
+    icon: undefined,
   },
 });
 
@@ -38,22 +41,21 @@ export const NotificationContextProvider = ({
     show: false,
     message: { title: "", subTitle: "" },
     variant: undefined,
+    icon: undefined,
   });
 
   React.useEffect(() => {
     if (alert.show) {
-      setTimeout(() => {
-        setAlert({
+      const timer = setTimeout(() => {
+        setAlert((prev) => ({
+          ...prev,
           show: false,
-          message: {
-            title: "",
-            subTitle: "",
-          },
-          variant: alert.variant,
-        });
+        }));
       }, 3000);
+
+      return () => clearTimeout(timer);
     }
-  }, [alert.show, alert.variant]);
+  }, [alert.show]);
 
   return (
     <NotificationContext.Provider value={{ alert, setAlert }}>
@@ -62,10 +64,11 @@ export const NotificationContextProvider = ({
   );
 };
 
+// Custom hook to use the Notification Context
 export const useNotification = () => {
   const context = useContext(NotificationContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useNotification must be used within a NotificationContextProvider");
   }
   return context;
 };

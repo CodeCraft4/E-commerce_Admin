@@ -3,7 +3,7 @@ import { Alert, Snackbar, Typography } from "@mui/material";
 import { useNotification } from "@muc/context";
 import { COLORS } from "@muc/constants";
 
-const SnackBar: React.FC = () => {
+const NotificationShow: React.FC = () => {
   const { alert, setAlert } = useNotification();
 
   return (
@@ -36,7 +36,7 @@ const SnackBar: React.FC = () => {
           borderRadius: "8px",
           p: "8px 12px",
         }}
-        icon={true}
+        icon={alert.icon || true}
       >
         <Typography
           variant="h5"
@@ -57,4 +57,4 @@ const SnackBar: React.FC = () => {
   );
 };
 
-export default SnackBar;
+export default NotificationShow;

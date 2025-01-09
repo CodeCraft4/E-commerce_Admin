@@ -13,6 +13,8 @@ import {
 } from "firebase/auth";
 import { auth } from "@muc/firebase";
 import { useNotification } from "./Notification";
+import { COLORS } from "@muc/constants";
+import { CheckCircle, Close } from "@mui/icons-material";
 
 interface AuthContextProps {
   user: User | null;
@@ -57,6 +59,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         message: { subTitle: "Logged in successfully" },
         show: true,
         variant: "success",
+        icon: <CheckCircle style={{ color: COLORS.white.main }} />,
       });
     } catch (error) {
       setIsLoggedIn(false);
@@ -64,6 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         message: { subTitle: "Please use a correct email & password" },
         show: true,
         variant: "error",
+        icon: <Close style={{ color: COLORS.white.main }} />,
       });
       throw error;
     } finally {

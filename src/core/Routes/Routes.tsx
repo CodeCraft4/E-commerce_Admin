@@ -1,5 +1,4 @@
 import { ROUTES } from "@muc/constants";
-import { useAuth } from "@muc/context";
 import { SecureRoute } from "@muc/hoc";
 import {
   AddNewProductsContainer,
@@ -11,15 +10,14 @@ import {
 import {
   ManageAccount,
   ManageAnalytics,
+  ManageAuth,
   ManageDashboard,
   ManageOrders,
   ManageProducts,
 } from "@muc/screens";
 import { Routes as ReactRoutes, Route, Navigate } from "react-router-dom";
 
-
 const Routes = () => {
-  const { isLoggedIn } = useAuth();
 
   return (
     <ReactRoutes>
@@ -49,11 +47,10 @@ const Routes = () => {
         <Route path={ROUTES.ADMIN.ACCOUNTS} element={<ManageAccount />} />
       </Route>
 
-      <Route
-        path={ROUTES.AUTH.SIGN_IN}
-        element={isLoggedIn ? <Navigate to={ROUTES.ADMIN.DASHBOARD} /> : <SignInContainer />}
-      />
-      <Route path="/" element={<Navigate to={ROUTES.AUTH.SIGN_IN} />} />
+      <Route element={<ManageAuth />}>
+        <Route path="/" element={<Navigate to={ROUTES.AUTH.SIGN_IN} />} />
+        <Route path={ROUTES.AUTH.SIGN_IN} element={<SignInContainer />} />
+      </Route>
     </ReactRoutes>
   );
 };

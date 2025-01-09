@@ -8,4 +8,4 @@ export { default as ManageAccountModal } from "./ManageAccountModal/ManageAccoun
 export { default as UploadProfile } from "./UploadProfile/UploadProfile";
 export { default as DataTable } from "./DataTable/DataTable";
 export { default as MenuButton } from "./MenuButton/MenuButton";
-export { default as SnackBar } from "./NotificationShow/NotificationShow";
+export { default as NotificationShow } from "./NotificationShow/NotificationShow";
