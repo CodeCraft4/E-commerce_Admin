@@ -78,6 +78,7 @@ const DropdownModal = (props: ModalProps) => {
               alignItems: "center",
               fontSize: "14px",
               cursor: "pointer",
+              color:'red'
             }}
             onClick={handleLogoutClick}
           >

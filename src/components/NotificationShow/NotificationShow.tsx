@@ -13,7 +13,7 @@ const SnackBar: React.FC = () => {
         alert.variant === "success"
           ? { vertical: "bottom", horizontal: "center" }
           : alert.variant === "warning"
-          ? { vertical: "bottom", horizontal: "center" }
+          ? { vertical: "bottom", horizontal: "right" }
           : { vertical: "top", horizontal: "center" }
       }
       autoHideDuration={1000}
@@ -28,7 +28,10 @@ const SnackBar: React.FC = () => {
               : alert.variant === "warning"
               ? COLORS.secondary.main
               : COLORS.primary.main,
-          color: COLORS.white.main,
+          color:
+            alert.variant === "warning"
+              ? COLORS.dark.darBlack
+              : COLORS.white.main,
           textAlign: "center",
           borderRadius: "8px",
           p: "8px 12px",

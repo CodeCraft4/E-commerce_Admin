@@ -1,7 +1,6 @@
 import { CustomButton } from "@muc/components";
 import { Logout } from "@mui/icons-material";
 import { Box, Dialog, DialogContent, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 type ModalProps = {
   open: boolean;
@@ -10,8 +9,7 @@ type ModalProps = {
 };
 const OnSuccessModal = (prop: ModalProps) => {
   const { open, onClose, onClick } = prop || {};
-  const navigate = useNavigate();
-
+  
   return (
     <Dialog open={open} onClose={onClose}>
       <Box sx={{ width: { md: 433 }, height: { md: 200 } }}>
@@ -57,7 +55,7 @@ const OnSuccessModal = (prop: ModalProps) => {
               title="Cancel"
               variant="outlined"
               width="150px"
-              onClick={() => navigate(-1)}
+              onClick={onClose}
             />
           </Box>
         </DialogContent>
