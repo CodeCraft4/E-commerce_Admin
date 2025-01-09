@@ -3,7 +3,7 @@ import Box from "@mui/system/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { Sidebar } from "../Sidebar/Sidebar";
-import { COLORS } from "@muc/constants";
+import { COLORS, ROUTES } from "@muc/constants";
 import { Footer, Navbar } from "@muc/layout";
 import { useModal } from "@muc/hooks";
 import {
@@ -12,6 +12,8 @@ import {
   OnSuccessModal,
   TitleHeader,
 } from "@muc/components";
+import { useAuth } from "@muc/context";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
@@ -22,6 +24,18 @@ type Props = {
 
 const AppLayout = (props: Props) => {
   const { children, title, path, isProduct } = props || {};
+  const navigate = useNavigate();
+
+  const { logOut } = useAuth();
+
+  const logOutWithRedirect = async () => {
+    try {
+      await logOut();
+      navigate(ROUTES.AUTH.SIGN_IN);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
 
   const [isSideBarOpen, setSideBarOpen] = React.useState(false);
 
@@ -60,7 +74,7 @@ const AppLayout = (props: Props) => {
           display: { sm: "none", xs: "block" },
           bgcolor: COLORS.primary.main,
           width: "100%",
-          zIndex:999
+          zIndex: 999,
         }}
       >
         <IconButton
@@ -100,7 +114,11 @@ const AppLayout = (props: Props) => {
         />
       )}
       {openLogoutModal && (
-        <OnSuccessModal open={openLogoutModal} onClose={closeLogoutModal} />
+        <OnSuccessModal
+          open={openLogoutModal}
+          onClose={closeLogoutModal}
+          onClick={logOutWithRedirect}
+        />
       )}
       {openAccountModal && (
         <ManageAccountModal

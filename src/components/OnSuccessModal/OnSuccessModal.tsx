@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 type ModalProps = {
   open: boolean;
   onClose: () => void | boolean;
+  onClick?: () => void;
 };
 const OnSuccessModal = (prop: ModalProps) => {
-  const { open, onClose } = prop || {};
+  const { open, onClose, onClick } = prop || {};
   const navigate = useNavigate();
+
   return (
     <Dialog open={open} onClose={onClose}>
       <Box sx={{ width: { md: 433 }, height: { md: 200 } }}>
@@ -25,7 +27,7 @@ const OnSuccessModal = (prop: ModalProps) => {
         >
           <Logout
             sx={{
-              fontSize: 40,
+              fontSize: 45,
               border: `1px solid red`,
               p: 1,
               borderRadius: 50,
@@ -46,7 +48,10 @@ const OnSuccessModal = (prop: ModalProps) => {
               title="Yes"
               variant="contained"
               width="150px"
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                if (onClick) onClick();
+                onClose();
+              }}
             />
             <CustomButton
               title="Cancel"

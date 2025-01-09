@@ -12,6 +12,8 @@ import { ArrowForwardIosOutlined } from "@mui/icons-material";
 import { loginSchema } from "@muc/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@muc/context";
+import { useEffect } from "react";
 
 interface SignUpFormFields {
   email: string;
@@ -23,10 +25,21 @@ const SignInForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const {
+    formState: { isValid },
+  } = methods;
+
+  const { logIn, loading, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = (data: SignUpFormFields) => {
-    console.log(data.email.split("@")[0], "Welcome to DASHBOARD");
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(ROUTES.ADMIN.DASHBOARD);
+    }
+  }, [isLoggedIn, navigate]);
+
+  const onSubmit = async (data: SignUpFormFields) => {
+    await logIn(data.email, data.password);
     navigate(ROUTES.ADMIN.DASHBOARD);
   };
 
@@ -37,11 +50,7 @@ const SignInForm = () => {
         <Typography variant="h6" color={COLORS.dark.main}>
           Enter your details below
         </Typography>
-        <Box
-          component={"form"}
-          pt={3}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
+        <Box component="form" pt={3} onSubmit={methods.handleSubmit(onSubmit)}>
           <CustomTextField
             placeHolder="Email or Phone Number"
             type="email"
@@ -64,7 +73,7 @@ const SignInForm = () => {
             }}
           />
           <Box
-            sx={{ display: "flex", justifyContent: "center", my: { md: 2 } }}
+            sx={{ display: "flex", justifyContent: "center",m:'auto', my: { md: 2 },width:{md:'100%',sm:'100%',xs:'70%'} }}
           >
             <CustomButton
               title="Log In"
@@ -72,6 +81,8 @@ const SignInForm = () => {
               type="submit"
               width="100%"
               icon={<ArrowForwardIosOutlined fontSize="small" />}
+              disabled={!isValid}
+              isLoading={loading}
             />
           </Box>
         </Box>

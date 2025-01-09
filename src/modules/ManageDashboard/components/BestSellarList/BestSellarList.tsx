@@ -8,7 +8,7 @@ const BestSellersList = () => {
       <Box
         sx={{
           bgcolor: COLORS.white.main,
-          width: { md: "360px", sm: "530px", xs: "100%" },
+          width: { md: "340px", sm: "530px", xs: "100%" },
           height: "390px",
           padding: "28px 16px 24px",
           borderRadius: "16px",

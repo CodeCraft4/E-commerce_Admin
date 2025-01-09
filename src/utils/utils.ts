@@ -33,7 +33,7 @@ export const dragAndDropGallary = {
 
 export const orderCardStyle={
   bgcolor: COLORS.white.main,
-  width: { md: "280px", sm: "240px", xs: "100%" },
+  width: { md: "24%", sm: "49%", xs: "100%" },
   borderRadius: "16px",
   padding: "24px 16px",
   display: "flex",

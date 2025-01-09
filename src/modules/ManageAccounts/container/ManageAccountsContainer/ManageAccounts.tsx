@@ -3,8 +3,11 @@ import { Box } from "@mui/material";
 import { ProfileCard } from "../../components/component";
 import { useModal } from "@muc/hooks";
 import { ManageAccountModal } from "@muc/components";
+import { useAuth } from "@muc/context";
 
 const ManageAccountsContainer = () => {
+  const { user } = useAuth();
+  console.log(user?.email);
   const {
     Open: isOpenAccountModal,
     onClose: closeAccountModal,
