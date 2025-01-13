@@ -5,17 +5,16 @@ import {
   useEffect,
   useState,
 } from "react";
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  User,
-} from "firebase/auth";
-import { auth } from "@muc/firebase";
 import { useNotification } from "./Notification";
 import { COLORS } from "@muc/constants";
 import { CheckCircle, Close } from "@mui/icons-material";
+import { account } from "@muc/services";
 
+interface User {
+  name: string;
+  email: string;
+  emailVerification: boolean;
+}
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
@@ -37,23 +36,31 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { setAlert } = useNotification();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setIsLoggedIn(!!currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
+    const getCurrentUser = async () => {
+      setLoading(true);
+      try {
+        const currentUser = await account.get();
+        setUser(currentUser);
+        setIsLoggedIn(true);
+      } catch (error) {
+        setUser(null);
+        setIsLoggedIn(false);
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getCurrentUser();
   }, []);
 
   const logIn = async (email: string, password: string): Promise<void> => {
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      setUser(userCredential.user);
+      console.log("Attempting login with email:", email);
+      await account.createEmailPasswordSession(email, password);
+      const currentUser = await account.get();
+      console.log("Current User:", currentUser);
+      setUser(currentUser);
       setIsLoggedIn(true);
       setAlert({
         message: { subTitle: "Logged in successfully" },
@@ -75,10 +82,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logOut = async () => {
+  const logOut = async (): Promise<void> => {
     setLoading(true);
     try {
-      await signOut(auth);
+      await account.deleteSession("current");
       setUser(null);
       setIsLoggedIn(false);
       setAlert({

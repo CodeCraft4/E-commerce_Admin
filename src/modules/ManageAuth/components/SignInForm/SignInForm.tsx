@@ -14,7 +14,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@muc/context";
 import { useEffect } from "react";
-
 interface SignUpFormFields {
   email: string;
   password: string;
@@ -73,7 +72,13 @@ const SignInForm = () => {
             }}
           />
           <Box
-            sx={{ display: "flex", justifyContent: "center",m:'auto', my: { md: 2 },width:{md:'100%',sm:'100%',xs:'70%'} }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              m: "auto",
+              my: { md: 2 },
+              width: { md: "100%", sm: "100%", xs: "70%" },
+            }}
           >
             <CustomButton
               title="Log In"
