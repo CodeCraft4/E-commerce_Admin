@@ -3,10 +3,17 @@ import Box from "@mui/system/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { Sidebar } from "../Sidebar/Sidebar";
-import { COLORS } from "@muc/constants";
+import { COLORS, ROUTES } from "@muc/constants";
 import { Footer, Navbar } from "@muc/layout";
 import { useModal } from "@muc/hooks";
-import { DropdownModal, TitleHeader } from "@muc/components";
+import {
+  DropdownModal,
+  ManageAccountModal,
+  OnSuccessModal,
+  TitleHeader,
+} from "@muc/components";
+import { useAuth } from "@muc/context";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
@@ -17,6 +24,18 @@ type Props = {
 
 const AppLayout = (props: Props) => {
   const { children, title, path, isProduct } = props || {};
+  const navigate = useNavigate();
+
+  const { logOut } = useAuth();
+
+  const logOutWithRedirect = async () => {
+    try {
+      await logOut();
+      navigate(ROUTES.AUTH.SIGN_IN);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
 
   const [isSideBarOpen, setSideBarOpen] = React.useState(false);
 
@@ -26,6 +45,16 @@ const AppLayout = (props: Props) => {
     Open: openDropdownModal,
     onClose: closeDropdownModal,
     onOpen: onOpenDropdownModal,
+  } = useModal();
+  const {
+    Open: openLogoutModal,
+    onClose: closeLogoutModal,
+    onOpen: onOpenLogoutModal,
+  } = useModal();
+  const {
+    Open: openAccountModal,
+    onClose: closeAccountModal,
+    onOpen: onOpenAccountModal,
   } = useModal();
 
   return (
@@ -39,10 +68,18 @@ const AppLayout = (props: Props) => {
       >
         <Sidebar open={isSideBarOpen} onClose={handleSideBarToggle} />
       </Box>
-      <Box sx={{ position: "absolute", display: { sm: "none", xs: "block" } }}>
+      <Box
+        sx={{
+          position: "absolute",
+          display: { sm: "none", xs: "block" },
+          bgcolor: COLORS.primary.main,
+          width: "100%",
+          zIndex: 999,
+        }}
+      >
         <IconButton
           sx={{
-            color: COLORS.primary.main,
+            color: COLORS.secondary.main,
           }}
           aria-label="open sidebar"
           onClick={handleSideBarToggle}
@@ -69,7 +106,25 @@ const AppLayout = (props: Props) => {
       </Box>
 
       {openDropdownModal && (
-        <DropdownModal open={openDropdownModal} onClose={closeDropdownModal} />
+        <DropdownModal
+          open={openDropdownModal}
+          onClose={closeDropdownModal}
+          openLogoutModal={onOpenLogoutModal}
+          openAccountModal={onOpenAccountModal}
+        />
+      )}
+      {openLogoutModal && (
+        <OnSuccessModal
+          open={openLogoutModal}
+          onClose={closeLogoutModal}
+          onClick={logOutWithRedirect}
+        />
+      )}
+      {openAccountModal && (
+        <ManageAccountModal
+          open={openAccountModal}
+          onClose={closeAccountModal}
+        />
       )}
     </Box>
   );

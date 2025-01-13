@@ -1,9 +1,51 @@
 import { AppLayout } from "@muc/layout";
+import { Box, Paper } from "@mui/material";
+import { ORDER_RECORD, ORDERS_TABLE_DATA } from "@muc/constants";
+import {
+  BestSellersList,
+  OrdersAnalytics,
+  SellerGraph,
+} from "../../components/components";
+import { DataTable } from "@muc/components";
 
 const ManageDashboardContainer = () => {
   return (
     <AppLayout title="Dashboard" path="Home">
-      <h1>.....................dashBoard</h1>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+          my: { md: 2 },
+          flexWrap: "wrap",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
+        {ORDER_RECORD.map((item) => (
+          <OrdersAnalytics
+            id={item.id}
+            title={item.title}
+            percentage={item.percentage}
+            price={item.price}
+            date={"oct 20 2024"}
+          />
+        ))}
+      </Box>
+      <Box
+        sx={{
+          display: { md: "flex", sm: "block", xs: "block" },
+          gap: "18px",
+          width: "100%",
+          flexWrap:'wrap',
+        }}
+      >
+        <SellerGraph />
+        <BestSellersList />
+      </Box>
+      <Box component={Paper} p={{ md: 1 }} my={2}>
+        <DataTable data={ORDERS_TABLE_DATA || []} title="Recent Orders" />
+      </Box>
     </AppLayout>
   );
 };

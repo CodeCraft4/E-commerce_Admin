@@ -16,6 +16,7 @@ const Navbar = (props: NavbarType) => {
         bgcolor: COLORS.white.main,
         borderBottom: `1px solid ${COLORS.dark.darBlack}`,
         p: 2,
+        my: { md: 0, sm: 0, xs: 5 },
       }}
     >
       <Box

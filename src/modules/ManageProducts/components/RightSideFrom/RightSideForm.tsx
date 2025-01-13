@@ -11,13 +11,20 @@ import { COLORS } from "@muc/constants";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useFormContext } from "react-hook-form";
 import { dragAndDrop, dragAndDropGallary } from "@muc/utils";
+import { ProductType } from "@muc/types";
+
+type ProductUpdateType = {
+  productDetails: ProductType;
+};
 
 type ImageFile = {
   preview: string;
   name: string;
 };
 
-const RightSideForm: React.FC = () => {
+const RightSideForm = (props: ProductUpdateType) => {
+  const { productDetails } = props || {};
+
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [images, setImages] = useState<ImageFile[]>([]);
   const [isUploadingPreview, setIsUploadingPreview] = useState<boolean>(false);
@@ -98,19 +105,33 @@ const RightSideForm: React.FC = () => {
             src={previewImage}
             alt="Preview"
             sx={{
-              width: "100%",
+              width: { md: "100%", sm: "100%", xs: "100%" },
               height: "100%",
               borderRadius: "10px",
               objectFit: "cover",
             }}
           />
         ) : (
-          <Box>
-            <Box component={"img"} src="/assets/icons/dragDrop-icon.svg" />
-            <Typography variant="h6" color={COLORS.primary.main}>
-              Drag and drop your image here
-            </Typography>
-          </Box>
+          <>
+            {productDetails?.img ? (
+              <Box
+                component={"img"}
+                src={productDetails?.img}
+                sx={{
+                  width: productDetails ? "100%" : 0,
+                  height: productDetails ? "100%" : 0,
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <Box>
+                <Box component={"img"} src="/assets/icons/dragDrop-icon.svg" />
+                <Typography variant="h6" color={COLORS.primary.main}>
+                  Drag and drop your image here
+                </Typography>
+              </Box>
+            )}
+          </>
         )}
       </Box>
 
@@ -141,7 +162,7 @@ const RightSideForm: React.FC = () => {
               variant="body1"
               color={COLORS.primary.main}
               width={"250px"}
-              fontSize={'15px'}
+              fontSize={"15px"}
             >
               Drop your image here, or browse Jpeg , png , svg are allowed
             </Typography>
@@ -158,12 +179,16 @@ const RightSideForm: React.FC = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  bgcolor: COLORS.gray.main,
+                  bgcolor: {
+                    md: COLORS.gray.main,
+                    sm: COLORS.gray.main,
+                    xs: COLORS.white.main,
+                  },
                   borderRadius: "10px",
                   p: 1,
                   justifyContent: "center",
                   m: "auto",
-                  width: "440px",
+                  width: { md: "440px", sm: 440, xs: 250 },
                 }}
               >
                 <Box

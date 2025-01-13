@@ -25,19 +25,44 @@ const TitleHeader = (props: HeaderTypes) => {
     >
       <Box>
         <Typography variant="h2">{title} </Typography>
-        <Typography
-          variant="h6"
+        <Box
           sx={{
-            fontSize: "15px",
-            alignItems: "center",
             display: { md: "flex", sm: "flex", xs: "none" },
             my: "8px",
+            gap: "4px",
+            alignItems: "center",
           }}
         >
-          {path}
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "15px",
+              alignItems: "center",
+              "&:hover": {
+                color: COLORS.primary.main,
+              },
+            }}
+            onClick={() => navigate(ROUTES.ADMIN.DASHBOARD ? 0 : -1)}
+          >
+            {" "}
+            {path}
+          </Typography>
           <ArrowForwardIos sx={{ fontSize: "15px" }} />
-          {formattedPathname}
-        </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "15px",
+              alignItems: "center",
+              "&:hover": {
+                color: COLORS.primary.main,
+              },
+            }}
+            onClick={() => navigate(+1)}
+          >
+            {" "}
+            {formattedPathname}
+          </Typography>
+        </Box>
       </Box>
       {isProduct ? (
         <CustomButton

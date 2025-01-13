@@ -7,19 +7,39 @@ import {
   Typography,
 } from "@mui/material";
 import { CustomButton, CustomTextField } from "@muc/components";
-import { COLORS } from "@muc/constants";
+import { COLORS, ROUTES } from "@muc/constants";
 import { ArrowForwardIosOutlined } from "@mui/icons-material";
-
+import { loginSchema } from "@muc/validations";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@muc/context";
+import { useEffect } from "react";
 interface SignUpFormFields {
   email: string;
   password: string;
 }
 
 const SignInForm = () => {
-  const methods = useForm<SignUpFormFields>();
+  const methods = useForm<SignUpFormFields>({
+    resolver: yupResolver(loginSchema),
+  });
 
-  const onSubmit = (e: SignUpFormFields) => {
-    console.log(e, "Log in");
+  const {
+    formState: { isValid },
+  } = methods;
+
+  const { logIn, loading, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(ROUTES.ADMIN.DASHBOARD);
+    }
+  }, [isLoggedIn, navigate]);
+
+  const onSubmit = async (data: SignUpFormFields) => {
+    await logIn(data.email, data.password);
+    navigate(ROUTES.ADMIN.DASHBOARD);
   };
 
   return (
@@ -29,20 +49,18 @@ const SignInForm = () => {
         <Typography variant="h6" color={COLORS.dark.main}>
           Enter your details below
         </Typography>
-        <Box
-          component={"form"}
-          pt={3}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
+        <Box component="form" pt={3} onSubmit={methods.handleSubmit(onSubmit)}>
           <CustomTextField
             placeHolder="Email or Phone Number"
             type="email"
             name="email"
+            width="406px"
           />
           <CustomTextField
             placeHolder="Password"
             type="password"
             name="password"
+            width="406px"
           />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
@@ -54,7 +72,13 @@ const SignInForm = () => {
             }}
           />
           <Box
-            sx={{ display: "flex", justifyContent: "center", my: { md: 2 } }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              m: "auto",
+              my: { md: 2 },
+              width: { md: "100%", sm: "100%", xs: "70%" },
+            }}
           >
             <CustomButton
               title="Log In"
@@ -62,6 +86,8 @@ const SignInForm = () => {
               type="submit"
               width="100%"
               icon={<ArrowForwardIosOutlined fontSize="small" />}
+              disabled={!isValid}
+              isLoading={loading}
             />
           </Box>
         </Box>

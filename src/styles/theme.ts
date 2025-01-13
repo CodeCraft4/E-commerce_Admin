@@ -120,7 +120,7 @@ theme = {
           fontSize: 16,
           background: "transparent",
           [theme.breakpoints.down("sm")]: {
-            width: "90%",
+            width: "100%",
           },
           "& fieldset": {
             border: `1.4px solid ${COLORS.dark.main}`,
@@ -163,6 +163,26 @@ theme = {
         },
       },
     },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          "& .MuiTableCell-root": {
+            fontWeight: 700,
+            color: COLORS.dark.darBlack,
+          },
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          "& .MuiTableCell-root": {
+            fontWeight: 500,
+            color: COLORS.dark.main,
+          },
+        },
+      },
+    },
 
     MuiCheckbox: {
       styleOverrides: {
@@ -202,8 +222,31 @@ theme = {
     MuiDialog: {
       styleOverrides: {
         paper: {
-          borderRadius: 4,
+          borderRadius: 8,
           boxShadow: "none",
+        },
+      },
+    },
+    MuiPagination: {
+      styleOverrides: {
+        root: {
+          marginTop: "64px",
+        },
+        ul: {
+          "& .MuiPaginationItem-root": {
+            width: "42px",
+            height: "32px",
+            borderRadius: "8px",
+            color: "black",
+            "&:hover": {
+              color: COLORS.white.main,
+              backgroundColor: COLORS.dark.main,
+            },
+          },
+          "& .Mui-selected": {
+            color: COLORS.white.main,
+            backgroundColor: COLORS.dark.main,
+          },
         },
       },
     },
