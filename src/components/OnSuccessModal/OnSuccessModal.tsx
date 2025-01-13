@@ -9,7 +9,7 @@ type ModalProps = {
 };
 const OnSuccessModal = (prop: ModalProps) => {
   const { open, onClose, onClick } = prop || {};
-  
+
   return (
     <Dialog open={open} onClose={onClose}>
       <Box sx={{ width: { md: 433 }, height: { md: 200 } }}>
@@ -37,8 +37,12 @@ const OnSuccessModal = (prop: ModalProps) => {
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: { md: "flex", sm: "flex", xs: "block" },
+              justifyContent: {
+                md: "space-between",
+                sm: "space-between",
+                xs: "center",
+              },
               gap: "16px",
             }}
           >

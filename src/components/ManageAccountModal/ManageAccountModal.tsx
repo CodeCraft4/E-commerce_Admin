@@ -2,14 +2,31 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Box, Dialog, DialogContent } from "@mui/material";
 import { CustomButton, CustomTextField, UploadProfile } from "@muc/components";
 import { COLORS } from "@muc/constants";
+import { useAuth } from "@muc/context";
 
 type ModalProps = {
   open: boolean;
   onClose: () => void;
 };
 
+type FormValues = {
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  address?: string;
+  description?: string;
+  role: string;
+  previewImage: File | null;
+};
+
 const ManageAccountModal = ({ open, onClose }: ModalProps) => {
-  const methods = useForm();
+  const methods = useForm<FormValues>();
+
+  const { loading } = useAuth();
+
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+  };
 
   return (
     <Dialog
@@ -19,8 +36,8 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
         sx: {
           position: "absolute",
           top: { md: 50, sm: 0, xs: 0 },
-          width: { md: "80%", sm: "80%", xs: "auto" },
-          left: { md: 245, sm: 50, xs: -0 },
+          width: { md: "80%", sm: "70%", xs: "auto" },
+          left: { md: 245, sm: 80, xs: -0 },
           overflowY: "auto",
           "&::-webkit-scrollbar": {
             width: "5px",
@@ -36,8 +53,12 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
       }}
       maxWidth="lg"
     >
-      <Box sx={{ height: { md: 640 }, maxWidth: "100%" }}>
-        <FormProvider {...methods}>
+      <FormProvider {...methods}>
+        <Box
+          sx={{ height: { md: 640 }, maxWidth: "100%" }}
+          component="form"
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
           <DialogContent
             sx={{
               padding: "16px",
@@ -54,8 +75,9 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                 gap: "16px",
                 justifyContent: "center",
                 width: "100%",
+                alignItems: "center",
+                m: "auto",
               }}
-              component="form"
             >
               {/* Left Side Inputs */}
               <Box sx={{ width: { md: "50%", sm: "100%", xs: "100%" } }}>
@@ -107,7 +129,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                 display: { md: "flex", sm: "flex", xs: "block" },
                 justifyContent: "space-between",
                 gap: "16px",
-                mt: -2,
+                mt: { md: -2, sm: -1, xs: 0 },
                 mb: { md: 0, sm: 0, xs: 2 },
                 width: { md: "auto", sm: "auto", xs: "100%" },
               }}
@@ -117,6 +139,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                 type="submit"
                 variant="contained"
                 width="250px"
+                isLoading={loading}
               />
               <CustomButton
                 title="Cancel"
@@ -126,8 +149,8 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
               />
             </Box>
           </DialogContent>
-        </FormProvider>
-      </Box>
+        </Box>
+      </FormProvider>
     </Dialog>
   );
 };

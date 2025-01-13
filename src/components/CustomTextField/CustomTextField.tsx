@@ -58,7 +58,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
             sx={{
               width: {
                 md: width ? width : "auto",
-                sm: width ? width : "auto",
+                sm: 480,
                 xs: "auto",
               },
               height: {
@@ -75,7 +75,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-end",
-                    mt:-0.5
+                    mt: -0.5,
                   }}
                 >
                   <Typography

@@ -1,5 +1,6 @@
 import { COLORS } from "@muc/constants";
 
+
 export const dragAndDrop = {
   width: { md: "441px", sm: "100%", xs: "100%" },
   height: { md: "350px", sm: 300, xs: 200 },

@@ -2,9 +2,9 @@ import { CustomTextField } from "@muc/components";
 import { ProductType } from "@muc/types";
 import { Box } from "@mui/material";
 
-type ProductDetailType={
-  productDetails:ProductType
-}
+type ProductDetailType = {
+  productDetails: ProductType;
+};
 const LeftSideForm = (props: ProductDetailType) => {
   const { productDetails } = props || {};
   return (
@@ -46,7 +46,7 @@ const LeftSideForm = (props: ProductDetailType) => {
         width="556px"
         defaultValue={`${productDetails?.title ? productDetails?.title : ""}`}
       />
-      <Box display={"flex"} gap={2} my={1}>
+      <Box display={{ md: "flex", sm: "block", xs: "block" }} gap={2} my={1}>
         <CustomTextField
           label="SKU"
           name="sku"
@@ -64,7 +64,7 @@ const LeftSideForm = (props: ProductDetailType) => {
           defaultValue={"23"}
         />
       </Box>
-      <Box display={"flex"} gap={2} my={1}>
+      <Box display={{ md: "flex", sm: "block", xs: "block" }} gap={2} my={1}>
         <CustomTextField
           label="Regular Price"
           name="RegularPrice"

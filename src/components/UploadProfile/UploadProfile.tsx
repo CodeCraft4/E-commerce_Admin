@@ -9,35 +9,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Controller, useForm } from "react-hook-form";
-
-
-
-type FormValues = {
-    fullName: string;
-    email: string;
-    phoneNumber: string;
-    address: string;
-    description: string;
-    role: string;
-    previewImage: File | null;
-  };
+import { Controller, useFormContext } from "react-hook-form";
 
 const UploadProfile = () => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isUploadingPreview, setIsUploadingPreview] = useState<boolean>(false);
-  const methods = useForm<FormValues>({
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phoneNumber: "",
-      address: "",
-      description: "",
-      role: "",
-      previewImage: null,
-    },
-  });
-  const { setValue } = methods;
+
+  const { setValue, control } = useFormContext();
 
   const handlePreviewDrop = (acceptedFiles: File[]) => {
     setIsUploadingPreview(true);
@@ -60,6 +38,7 @@ const UploadProfile = () => {
     },
     multiple: false,
   });
+
   return (
     <Box sx={{ width: { md: "50%", sm: "100%", xs: "100%" } }}>
       {/* Dropzone */}
@@ -113,9 +92,9 @@ const UploadProfile = () => {
         </Typography>
         <Controller
           name="role"
-          control={methods.control}
+          control={control}
           render={({ field }) => (
-            <Select {...field} fullWidth>
+            <Select {...field} sx={{ width: { md: 550, sm: 480, xs: "auto" } }}>
               <MenuItem value="Administrator">Administrator</MenuItem>
               <MenuItem value="Contributor">Contributor</MenuItem>
               <MenuItem value="Moderator">Moderator</MenuItem>

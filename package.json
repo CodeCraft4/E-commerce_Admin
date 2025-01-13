@@ -16,6 +16,8 @@
     "@mui/icons-material": "^6.3.0",
     "@mui/material": "^6.3.0",
     "@mui/styled-engine-sc": "^6.3.0",
+    "appwrite": "^16.1.0",
+    "cloudinary": "^2.5.1",
     "firebase": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
