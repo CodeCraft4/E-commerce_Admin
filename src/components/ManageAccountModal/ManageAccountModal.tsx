@@ -3,6 +3,8 @@ import { Box, Dialog, DialogContent } from "@mui/material";
 import { CustomButton, CustomTextField, UploadProfile } from "@muc/components";
 import { COLORS } from "@muc/constants";
 import { useAuth } from "@muc/context";
+import { fetchAdminData, updateAdminAccount } from "@muc/services";
+import { useEffect } from "react";
 
 type ModalProps = {
   open: boolean;
@@ -16,16 +18,48 @@ type FormValues = {
   address?: string;
   description?: string;
   role: string;
-  previewImage: File | null;
+  // previewImage: File | null;
 };
 
 const ManageAccountModal = ({ open, onClose }: ModalProps) => {
-  const methods = useForm<FormValues>();
+  const { user, loading } = useAuth();
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+      description: "",
+      role: "",
+    },
+  });
 
-  const { loading } = useAuth();
+  const { reset } = methods;
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  useEffect(() => {
+    if (user?.uid) {
+      const unsubscribe = fetchAdminData(user.uid, (adminData) => {
+        if (adminData) {
+          reset({
+            fullName: adminData.fullName || "",
+            email: adminData.email || "",
+            phoneNumber: adminData.phoneNumber || "",
+            address: adminData.address || "",
+            description: adminData.description || "",
+            role: adminData.role || "Administrator",
+          });
+        }
+      });
+
+      return () => unsubscribe();
+    }
+  }, [user, reset]);
+
+  const onSubmit = async (data: FormValues) => {
+    updateAdminAccount(data, user);
+    setTimeout(() => {
+      onClose();
+    }, 1000);
   };
 
   return (
@@ -139,7 +173,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
                 type="submit"
                 variant="contained"
                 width="250px"
-                isLoading={loading}
+                isLoading={!!loading}
               />
               <CustomButton
                 title="Cancel"

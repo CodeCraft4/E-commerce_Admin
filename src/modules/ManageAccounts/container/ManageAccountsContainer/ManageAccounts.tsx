@@ -7,7 +7,7 @@ import { useAuth } from "@muc/context";
 
 const ManageAccountsContainer = () => {
   const { user } = useAuth();
-  console.log(user?.email);
+  console.log(user);
   const {
     Open: isOpenAccountModal,
     onClose: closeAccountModal,
