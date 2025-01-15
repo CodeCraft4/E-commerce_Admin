@@ -4,6 +4,7 @@ import { LeftSideForm, RightSideForm } from "../../components/components";
 import { CustomButton } from "@muc/components";
 import { FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import { addProductToFirestore } from "@muc/services";
 
 interface ProductFormInputs {
   productName: string;
@@ -23,8 +24,13 @@ const AddNewProductsContainer = () => {
   const updateProduct = location.state?.item;
   console.log(updateProduct);
 
-  const onAddProduct = (data: ProductFormInputs) => {
-    console.log(data, "--- Complete Form Data");
+  const onAddProduct = async (productData: ProductFormInputs) => {
+    try {
+      console.log("Product Data:", productData);
+      await addProductToFirestore(productData);
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   return (

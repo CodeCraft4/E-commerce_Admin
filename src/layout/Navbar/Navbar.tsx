@@ -1,6 +1,6 @@
 import { COLORS } from "@muc/constants";
-import { Box, Button } from "@mui/material";
-import { ExpandMore, ExpandLess } from "@mui/icons-material";
+import { Box, Button, IconButton } from "@mui/material";
+import { ExpandMore, ExpandLess, Tune } from "@mui/icons-material";
 
 type NavbarType = {
   onOpenModal: () => void;
@@ -29,6 +29,9 @@ const Navbar = (props: NavbarType) => {
       >
         <Box component={"img"} src="/assets/icons/search-icon.svg" />
         <Box component={"img"} src="/assets/icons/notification-icon.svg" />
+        <IconButton>
+          <Tune sx={{ color: COLORS.dark.darBlack }} />
+        </IconButton>
         <Button
           variant="outlined"
           sx={{
