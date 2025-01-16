@@ -23,8 +23,18 @@ const AddNewProductsContainer = () => {
   const updateProduct = location.state?.item;
   console.log(updateProduct);
 
+<<<<<<< Updated upstream
   const onAddProduct = (data: ProductFormInputs) => {
     console.log(data, "--- Complete Form Data");
+=======
+  const onAddProduct = async (productData: ProductFormInputs) => {
+    try {
+      console.log("Product Data:", productData);
+      // await addProductToFirestore(productData);
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+>>>>>>> Stashed changes
   };
 
   return (

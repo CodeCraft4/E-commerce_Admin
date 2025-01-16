@@ -5,19 +5,14 @@ import {
   useEffect,
   useState,
 } from "react";
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  User,
-} from "firebase/auth";
-import { auth } from "@muc/firebase";
 import { useNotification } from "./Notification";
 import { COLORS } from "@muc/constants";
 import { CheckCircle, Close } from "@mui/icons-material";
+import { account } from "@muc/appwrite";
+import { Models } from "appwrite";
 
 interface AuthContextProps {
-  user: User | null;
+  user: Models.User<Models.Preferences> | null;
   loading: boolean;
   isLoggedIn: boolean;
   logOut: () => Promise<void>;
@@ -31,29 +26,37 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Models.User<Models.Preferences> | null>(
+    null
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { setAlert } = useNotification();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setIsLoggedIn(!!currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
+    const fetchUser = async () => {
+      try {
+        const currentUser = await account.get();
+        setUser(currentUser);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.log(error);
+        setUser(null);
+        setIsLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
   }, []);
 
   const logIn = async (email: string, password: string): Promise<void> => {
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      setUser(userCredential.user);
+      await account.createEmailPasswordSession(email, password);
+      const currentUser = await account.get();
+      setUser(currentUser);
       setIsLoggedIn(true);
       setAlert({
         message: { subTitle: "Logged in successfully" },
@@ -78,7 +81,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logOut = async () => {
     setLoading(true);
     try {
-      await signOut(auth);
+      await account.deleteSession("current");
       setUser(null);
       setIsLoggedIn(false);
       setAlert({

@@ -3,6 +3,11 @@ import { Box, Dialog, DialogContent } from "@mui/material";
 import { CustomButton, CustomTextField, UploadProfile } from "@muc/components";
 import { COLORS } from "@muc/constants";
 import { useAuth } from "@muc/context";
+<<<<<<< Updated upstream
+=======
+import { fetchAdminAccount, updateAdminAccount } from "@muc/services";
+import { useEffect, useState } from "react";
+>>>>>>> Stashed changes
 
 type ModalProps = {
   open: boolean;
@@ -16,6 +21,7 @@ type FormValues = {
   address?: string;
   description?: string;
   role: string;
+<<<<<<< Updated upstream
   previewImage: File | null;
 };
 
@@ -26,6 +32,60 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
+=======
+  profileImg?: any | null;
+};
+
+const ManageAccountModal = ({ open, onClose }: ModalProps) => {
+  const { user, loading } = useAuth();
+  const userId = user?.$id;
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+      description: "",
+      role: "",
+      profileImg: "",
+    },
+  });
+
+  const { reset } = methods;
+  const [initialPreview, setInitialPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId) {
+        try {
+          const adminData: FormValues | any = await fetchAdminAccount(userId);
+          if (adminData) {
+            console.log(adminData.previewImageUrl, "----");
+            setInitialPreview(adminData.profileImg);
+            reset({
+              fullName: adminData.fullName || "",
+              email: adminData.email || "",
+              phoneNumber: adminData.phoneNumber || "",
+              address: adminData.address || "",
+              description: adminData.description || "",
+              role: adminData.role || "Administrator",
+              profileImg: adminData.profileImg || "",
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching admin data:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [userId, reset]);
+
+  const onSubmit = async (data: FormValues) => {
+    await updateAdminAccount(data, userId);
+    console.log("Profile updated successfully");
+    onClose();
+>>>>>>> Stashed changes
   };
 
   return (
@@ -120,7 +180,7 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
               </Box>
 
               {/* Right Side */}
-              <UploadProfile />
+              <UploadProfile initialPreview={initialPreview} />
             </Box>
 
             {/* Buttons */}

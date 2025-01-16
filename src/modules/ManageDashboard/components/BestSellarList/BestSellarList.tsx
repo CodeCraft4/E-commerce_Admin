@@ -51,6 +51,7 @@ const BestSellersList = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}
+              key={item.title}
             >
               <Box sx={{ display: "flex", gap: "16px", alignItems: "center" }}>
                 <Box

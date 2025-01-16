@@ -24,11 +24,12 @@ const ManageDashboardContainer = () => {
       >
         {ORDER_RECORD.map((item) => (
           <OrdersAnalytics
+            key={item.id}
             id={item.id}
             title={item.title}
             percentage={item.percentage}
             price={item.price}
-            date={"oct 20 2024"}
+            date={item.date}
           />
         ))}
       </Box>
@@ -37,7 +38,7 @@ const ManageDashboardContainer = () => {
           display: { md: "flex", sm: "block", xs: "block" },
           gap: "18px",
           width: "100%",
-          flexWrap:'wrap',
+          flexWrap: "wrap",
         }}
       >
         <SellerGraph />

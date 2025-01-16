@@ -36,7 +36,7 @@ const NotificationShow: React.FC = () => {
           borderRadius: "8px",
           p: "8px 12px",
         }}
-        icon={alert.icon || true}
+        icon={alert?.icon || null}
       >
         <Typography
           variant="h5"

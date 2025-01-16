@@ -25,6 +25,7 @@ const ManageAccountsContainer = () => {
       >
         {[1, 2, 3, 4, 5, 6].map(() => (
           <ProfileCard
+            key={""}
             name="Doe"
             profile="/assets/images/authImg.svg"
             role="Administrator"

@@ -1,4 +1,5 @@
-import { COLORS } from "@muc/constants";
+import { storage } from "@muc/appwrite";
+import { COLORS, DATABASE } from "@muc/constants";
 import { dragAndDrop } from "@muc/utils";
 import {
   Box,
@@ -7,26 +8,47 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Controller, useFormContext } from "react-hook-form";
 
-const UploadProfile = () => {
+const UploadProfile = ({ initialPreview }: any) => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isUploadingPreview, setIsUploadingPreview] = useState<boolean>(false);
 
-  const { setValue, control } = useFormContext();
+  const projectId = import.meta.env.VITE_APPWRITE_PROJECT_ID as string;
 
-  const handlePreviewDrop = (acceptedFiles: File[]) => {
+  const { setValue, control, getValues } = useFormContext();
+
+  const handlePreviewDrop = async (acceptedFiles: File[]) => {
     setIsUploadingPreview(true);
     const file = acceptedFiles[0];
-    const preview = URL.createObjectURL(file);
 
-    setTimeout(() => {
-      setPreviewImage(preview);
+    try {
+      const currentFileUrl = getValues("profileImg");
+      const currentFileId = currentFileUrl
+        ?.split("/files/")[1]
+        ?.split("/view")[0];
+
+      // Delete the existing file if it exists
+      if (currentFileId) {
+        await storage.deleteFile(DATABASE.storageId, currentFileId);
+      }
+      const response = await storage.createFile(
+        DATABASE.storageId,
+        `${null}`,
+        file
+      );
+
+      // Generate the file URL
+      const fileUrl = `https://cloud.appwrite.io/v1/storage/buckets/${DATABASE.storageId}/files/${response.$id}/view?project=${projectId}`;
+      setPreviewImage(fileUrl);
+      setValue("profileImg", fileUrl);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    } finally {
       setIsUploadingPreview(false);
-      setValue("previewImage", file);
-    }, 1500);
+    }
   };
 
   const previewDropzone = useDropzone({
@@ -38,6 +60,12 @@ const UploadProfile = () => {
     },
     multiple: false,
   });
+
+  useEffect(() => {
+    if (initialPreview) {
+      setPreviewImage(initialPreview);
+    }
+  }, [initialPreview]);
 
   return (
     <Box sx={{ width: { md: "50%", sm: "100%", xs: "100%" } }}>
@@ -66,8 +94,9 @@ const UploadProfile = () => {
         ) : previewImage ? (
           <Box
             component="img"
-            src={previewImage}
-            alt="Preview"
+            src={previewImage || initialPreview}
+            alt={"..."}
+            onError={() => console.error("Failed to load image:", previewImage)}
             sx={{
               width: "100%",
               height: "100%",

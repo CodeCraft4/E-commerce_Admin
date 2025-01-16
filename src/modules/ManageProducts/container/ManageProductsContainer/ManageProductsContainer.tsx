@@ -27,7 +27,7 @@ const ManageProductsContainer = () => {
           }}
         >
           {currentItems.map((item) => (
-            <ProductCard item={item} />
+            <ProductCard item={item} key={item.title} />
           ))}
         </Box>
         <Pagination
