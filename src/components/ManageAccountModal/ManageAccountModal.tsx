@@ -3,11 +3,8 @@ import { Box, Dialog, DialogContent } from "@mui/material";
 import { CustomButton, CustomTextField, UploadProfile } from "@muc/components";
 import { COLORS } from "@muc/constants";
 import { useAuth } from "@muc/context";
-<<<<<<< Updated upstream
-=======
 import { fetchAdminAccount, updateAdminAccount } from "@muc/services";
 import { useEffect, useState } from "react";
->>>>>>> Stashed changes
 
 type ModalProps = {
   open: boolean;
@@ -21,18 +18,6 @@ type FormValues = {
   address?: string;
   description?: string;
   role: string;
-<<<<<<< Updated upstream
-  previewImage: File | null;
-};
-
-const ManageAccountModal = ({ open, onClose }: ModalProps) => {
-  const methods = useForm<FormValues>();
-
-  const { loading } = useAuth();
-
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-=======
   profileImg?: any | null;
 };
 
@@ -85,7 +70,6 @@ const ManageAccountModal = ({ open, onClose }: ModalProps) => {
     await updateAdminAccount(data, userId);
     console.log("Profile updated successfully");
     onClose();
->>>>>>> Stashed changes
   };
 
   return (

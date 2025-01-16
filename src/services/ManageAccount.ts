@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-export {};
-=======
 import { database } from "@muc/appwrite";
 import { DATABASE, COLLECTION } from "@muc/constants";
 
@@ -72,4 +69,3 @@ export const fetchAdminAccount = async (userId: string) => {
     console.error("Error fetching admin account:", error);
   }
 };
->>>>>>> Stashed changes
